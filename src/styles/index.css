@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Official Design System Tokens (SAVELIX Colour Palette & UI Design System) */
+  --color-bg-main: #F7F3FA;
+  --color-bg-soft: #EDE5F4;
+  --color-bg-card: #FFFFFF;
+  --color-primary: #8065A8;
+  --color-primary-hover: #6C528F;
+  --color-heading: #302B50;
+  --color-text-body: #666477;
+  --color-text-inverse: #FFFFFF;
+  --color-border: #E4DCEB;
+  --color-icon-bg: #EDE5F4;
+  --color-footer-bg: #302B50;
+
+  /* Spacing and Radius Tokens */
+  --radius-card: 12px;
+  --radius-hero: 42px;
+  --radius-button: 999px;
+  --section-space-desktop: 96px;
+  --section-space-mobile: 56px;
+
+  /* Typography Tokens */
+  --font-serif: 'Baskervville', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Aliased Savelix Tokens */
+  --color-savelix-pale-lilac: var(--color-bg-main);
+  --color-savelix-soft-lavender: var(--color-bg-soft);
+  --color-savelix-lavender-light: #F2ECF7;
+  --color-savelix-muted-purple: var(--color-primary);
+  --color-savelix-purple-hover: var(--color-primary-hover);
+  --color-savelix-deep-plum: var(--color-heading);
+  --color-savelix-plum-hover: #25203F;
+  --color-savelix-soft-grey: var(--color-text-body);
+  --color-savelix-border: var(--color-border);
+  --color-savelix-white: #FFFFFF;
+
+  /* Semantic Aliases */
+  --bg-primary: var(--color-bg-main);
+  --bg-surface: var(--color-bg-soft);
+  --bg-card: var(--color-bg-card);
+  --text-primary: var(--color-heading);
+  --text-secondary: var(--color-text-body);
+  --border-subtle: var(--color-border);
+  --brand-primary: var(--color-heading);
+  --brand-accent: var(--color-primary);
+
+  /* Elevation Shadows */
+  --shadow-savelix-sm: 0 1px 3px 0 rgba(48, 43, 80, 0.04), 0 1px 2px 0 rgba(48, 43, 80, 0.02);
+  --shadow-savelix-md: 0 4px 6px -1px rgba(48, 43, 80, 0.06), 0 2px 4px -1px rgba(48, 43, 80, 0.03);
+  --shadow-savelix-lg: 0 10px 15px -3px rgba(48, 43, 80, 0.08), 0 4px 6px -2px rgba(48, 43, 80, 0.04);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slideIn {
+  animation: slideInRight 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-bg-main);
+    color: var(--color-heading);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* Accessible Focus Outline */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
