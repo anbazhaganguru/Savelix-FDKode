@@ -1,12 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { recordNavigation } from '../../utils/navigation';
 
 /**
- * ScrollToTop
- * Automatically scrolls window to top on route change.
+ * ScrollToTop & Navigation Tracker
+ *
+ * Automatically scrolls window to top on route change,
+ * and records internal client-side navigation transitions.
  */
 export default function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, key } = useLocation();
+  const isInitialMount = useRef(true);
 
   useEffect(() => {
     window.scrollTo({
@@ -14,7 +18,14 @@ export default function ScrollToTop() {
       left: 0,
       behavior: 'instant',
     });
-  }, [pathname]);
+
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      recordNavigation();
+    }
+  }, [pathname, key]);
 
   return null;
 }
+

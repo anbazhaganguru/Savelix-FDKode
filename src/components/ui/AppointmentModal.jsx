@@ -98,7 +98,7 @@ export default function AppointmentModal({ isOpen, onClose }) {
     >
       <div
         ref={modalRef}
-        className="relative w-full max-w-lg bg-white rounded-2xl shadow-xl border border-savelix-border p-6 sm:p-8 overflow-hidden text-left"
+        className="relative w-full max-w-lg max-h-[calc(100dvh-2rem)] bg-white rounded-2xl shadow-xl border border-savelix-border p-6 sm:p-8 overflow-y-auto text-left"
       >
         {/* Close Button */}
         <button

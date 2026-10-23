@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X, Calendar, ArrowRight } from 'lucide-react';
 import Logo from '../ui/Logo';
@@ -23,8 +24,10 @@ export default function Navbar({ onOpenAppointmentModal }) {
   const location = useLocation();
   const dropdownRef = useRef(null);
   const dropdownTimeoutRef = useRef(null);
-
-  const [prevPath, setPrevPath] = useState(location.pathname);
+  const hamburgerBtnRef = useRef(null);
+  const drawerRef = useRef(null);
+  const closeBtnRef = useRef(null);
+  const wasMobileMenuOpen = useRef(false);
 
   const closeMenus = () => {
     setIsMobileMenuOpen(false);
@@ -32,13 +35,16 @@ export default function Navbar({ onOpenAppointmentModal }) {
     setIsMobileServicesOpen(false);
   };
 
-  // Synchronously reset open menus during render when route changes without cascading render
-  if (prevPath !== location.pathname) {
-    setPrevPath(location.pathname);
-    setIsMobileMenuOpen(false);
-    setIsServicesOpen(false);
-    setIsMobileServicesOpen(false);
-  }
+  // Close all menus when route changes (e.g. navigation link clicked or browser back/forward)
+  const prevPathRef = useRef(location.pathname);
+  useEffect(() => {
+    if (prevPathRef.current !== location.pathname) {
+      prevPathRef.current = location.pathname;
+      setIsMobileMenuOpen(false);
+      setIsServicesOpen(false);
+      setIsMobileServicesOpen(false);
+    }
+  }, [location.pathname]);
 
   // Click outside listener for desktop dropdown
   useEffect(() => {
@@ -59,6 +65,9 @@ export default function Navbar({ onOpenAppointmentModal }) {
     function handleGlobalKeyDown(e) {
       if (e.key === 'Escape') {
         closeMenus();
+        if (hamburgerBtnRef.current) {
+          hamburgerBtnRef.current.focus();
+        }
       }
     }
     window.addEventListener('keydown', handleGlobalKeyDown);
@@ -67,16 +76,71 @@ export default function Navbar({ onOpenAppointmentModal }) {
     };
   }, []);
 
-  // Prevent background scrolling when mobile drawer is open
+  // Auto-close mobile drawer if viewport is resized to desktop width (>= 1024px)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // Prevent background scrolling only when mobile drawer is open; cleanly restore on close or unmount
   useEffect(() => {
     if (isMobileMenuOpen) {
+      const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+      return () => {
+        document.body.style.overflow = originalOverflow || '';
+      };
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
+  }, [isMobileMenuOpen]);
+
+  // Focus management and keyboard trap for accessible mobile drawer
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      // Move focus into drawer
+      const timer = setTimeout(() => {
+        closeBtnRef.current?.focus();
+      }, 50);
+
+      const handleTrapTab = (e) => {
+        if (e.key === 'Tab' && drawerRef.current) {
+          const focusables = drawerRef.current.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          );
+          if (focusables.length === 0) return;
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+
+          if (e.shiftKey) {
+            if (document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            }
+          } else {
+            if (document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        }
+      };
+
+      window.addEventListener('keydown', handleTrapTab);
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener('keydown', handleTrapTab);
+      };
+    } else if (wasMobileMenuOpen.current) {
+      // Restore focus to hamburger button when drawer closes
+      hamburgerBtnRef.current?.focus();
+    }
+    wasMobileMenuOpen.current = isMobileMenuOpen;
   }, [isMobileMenuOpen]);
 
   // Smooth hover open with grace delay for desktop dropdown
@@ -102,7 +166,7 @@ export default function Navbar({ onOpenAppointmentModal }) {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-savelix-border/70 transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 xl:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Brand Logo */}
           <div className="flex-shrink-0 flex items-center">
@@ -111,7 +175,7 @@ export default function Navbar({ onOpenAppointmentModal }) {
 
           {/* Desktop Navigation Links */}
           <nav
-            className="hidden lg:flex items-center space-x-0.5 xl:space-x-1.5"
+            className={`${isMobileMenuOpen ? 'hidden' : 'hidden lg:flex'} items-center space-x-0.5 xl:space-x-1.5`}
             aria-label="Main Navigation"
           >
             {MAIN_NAV_ITEMS.map((item) => {
@@ -130,9 +194,9 @@ export default function Navbar({ onOpenAppointmentModal }) {
                       onClick={() => setIsServicesOpen(!isServicesOpen)}
                       aria-expanded={isServicesOpen}
                       aria-haspopup="true"
-                      className={`relative inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 text-xs xl:text-sm font-medium rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple ${
+                      className={`relative inline-flex items-center gap-1 xl:gap-1.5 px-2 xl:px-3 py-1.5 xl:py-2 text-[11.5px] xl:text-sm font-medium rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple ${
                         isServicesActive
-                          ? 'text-savelix-purple font-semibold after:absolute after:bottom-0 after:left-2.5 after:right-2.5 xl:after:left-3 xl:after:right-3 after:h-0.5 after:bg-savelix-purple after:rounded-full'
+                          ? 'text-savelix-purple font-semibold after:absolute after:bottom-0 after:left-2 after:right-2 xl:after:left-3 xl:after:right-3 after:h-0.5 after:bg-savelix-purple after:rounded-full'
                           : 'text-savelix-plum hover:text-savelix-purple'
                       }`}
                     >
@@ -197,9 +261,9 @@ export default function Navbar({ onOpenAppointmentModal }) {
                   end={item.path === '/'}
                   onClick={closeMenus}
                   className={({ isActive }) =>
-                    `relative px-2.5 xl:px-3 py-2 text-xs xl:text-sm font-medium rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple ${
+                    `relative px-2 xl:px-3 py-1.5 xl:py-2 text-[11.5px] xl:text-sm font-medium rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple ${
                       isActive
-                        ? 'text-savelix-purple font-semibold after:absolute after:bottom-0 after:left-2.5 after:right-2.5 xl:after:left-3 xl:after:right-3 after:h-0.5 after:bg-savelix-purple after:rounded-full'
+                        ? 'text-savelix-purple font-semibold after:absolute after:bottom-0 after:left-2 after:right-2 xl:after:left-3 xl:after:right-3 after:h-0.5 after:bg-savelix-purple after:rounded-full'
                         : 'text-savelix-plum hover:text-savelix-purple'
                     }`
                   }
@@ -211,11 +275,11 @@ export default function Navbar({ onOpenAppointmentModal }) {
           </nav>
 
           {/* Desktop Right CTA Action */}
-          <div className="hidden lg:flex items-center">
+          <div className={`${isMobileMenuOpen ? 'hidden' : 'hidden lg:flex'} items-center`}>
             <button
               type="button"
               onClick={onOpenAppointmentModal}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs font-semibold tracking-wide transition-all duration-200 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2"
+              className="inline-flex items-center gap-1.5 xl:gap-2 px-3.5 xl:px-5 py-2 xl:py-2.5 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs font-semibold tracking-wide whitespace-nowrap transition-all duration-200 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2"
               aria-label="Open appointment booking dialog"
             >
               <Calendar className="w-4 h-4" />
@@ -226,11 +290,13 @@ export default function Navbar({ onOpenAppointmentModal }) {
           {/* Mobile Hamburger Button */}
           <div className="flex lg:hidden items-center">
             <button
+              ref={hamburgerBtnRef}
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2.5 rounded-xl text-savelix-plum hover:bg-savelix-lavender focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-xl text-savelix-plum hover:bg-savelix-lavender focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
               aria-label={isMobileMenuOpen ? 'Close main menu' : 'Open main menu'}
               aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation-drawer"
             >
               {isMobileMenuOpen ? (
                 <X className="w-6 h-6 text-savelix-plum" />
@@ -242,10 +308,11 @@ export default function Navbar({ onOpenAppointmentModal }) {
         </div>
       </div>
 
-      {/* Mobile Sliding Drawer & Overlay */}
-      {isMobileMenuOpen && (
+      {/* Mobile Sliding Drawer & Overlay rendered into document.body to bypass header containing block and backdrop-blur */}
+      {isMobileMenuOpen && typeof document !== 'undefined' && createPortal(
         <div
-          className="fixed inset-0 z-50 lg:hidden bg-savelix-plum/40 backdrop-blur-sm transition-opacity"
+          id="mobile-navigation-drawer"
+          className="fixed inset-0 z-50 lg:hidden bg-savelix-plum/40 backdrop-blur-sm animate-fadeIn"
           aria-modal="true"
           role="dialog"
           aria-label="Mobile Navigation Drawer"
@@ -253,23 +320,30 @@ export default function Navbar({ onOpenAppointmentModal }) {
             if (e.target === e.currentTarget) closeMenus();
           }}
         >
-          <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl border-l border-savelix-border flex flex-col justify-between overflow-y-auto animate-slideIn">
+          <div
+            ref={drawerRef}
+            className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl border-l border-savelix-border flex flex-col h-full h-[100dvh] max-h-screen animate-slideIn"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Drawer Header */}
-            <div>
-              <div className="flex items-center justify-between p-4 border-b border-savelix-border/70">
+            <div className="flex-shrink-0 flex items-center justify-between p-4 border-b border-savelix-border/70 bg-white">
+              <div onClick={closeMenus} className="flex-shrink-0 cursor-pointer">
                 <Logo size="sm" />
-                <button
-                  type="button"
-                  onClick={closeMenus}
-                  className="p-2 rounded-xl text-savelix-grey hover:text-savelix-plum hover:bg-savelix-lavender focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
-                  aria-label="Close navigation menu"
-                >
-                  <X className="w-5 h-5" />
-                </button>
               </div>
+              <button
+                ref={closeBtnRef}
+                type="button"
+                onClick={closeMenus}
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-xl text-savelix-grey hover:text-savelix-plum hover:bg-savelix-lavender focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
+                aria-label="Close navigation menu"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
 
-              {/* Navigation Items List */}
-              <nav className="p-4 space-y-1" aria-label="Mobile main navigation">
+            {/* Navigation Items List */}
+            <div className="flex-1 overflow-y-auto overscroll-contain p-4 space-y-1">
+              <nav aria-label="Mobile main navigation" className="space-y-1">
                 {MAIN_NAV_ITEMS.map((item) => {
                   if (item.isDropdown) {
                     return (
@@ -278,6 +352,7 @@ export default function Navbar({ onOpenAppointmentModal }) {
                           type="button"
                           onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
                           aria-expanded={isMobileServicesOpen}
+                          aria-controls="mobile-services-accordion"
                           className={`w-full flex items-center justify-between px-3 py-3 rounded-xl text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple ${
                             isServicesActive
                               ? 'bg-savelix-lavender text-savelix-purple'
@@ -294,7 +369,7 @@ export default function Navbar({ onOpenAppointmentModal }) {
 
                         {/* Mobile Services Accordion */}
                         {isMobileServicesOpen && (
-                          <div className="mt-1 pl-3 space-y-1 border-l-2 border-savelix-lavender ml-3">
+                          <div id="mobile-services-accordion" className="mt-1 pl-3 space-y-1 border-l-2 border-savelix-lavender ml-3">
                             {SERVICES_NAV_ITEMS.map((subItem) => (
                               <NavLink
                                 key={subItem.path}
@@ -340,14 +415,15 @@ export default function Navbar({ onOpenAppointmentModal }) {
             </div>
 
             {/* Drawer Bottom CTA Action */}
-            <div className="p-4 border-t border-savelix-border bg-savelix-lilac/40">
+            <div className="flex-shrink-0 p-4 border-t border-savelix-border bg-savelix-lilac/40">
               <button
                 type="button"
                 onClick={() => {
                   closeMenus();
                   onOpenAppointmentModal();
                 }}
-                className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-sm font-semibold shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
+                className="w-full min-h-[44px] flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-sm font-semibold shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
+                aria-label="Open appointment booking dialog"
               >
                 <Calendar className="w-4 h-4" />
                 <span>{NAVBAR_CTA.label}</span>
@@ -358,7 +434,8 @@ export default function Navbar({ onOpenAppointmentModal }) {
               </p>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   );

@@ -22,7 +22,8 @@ export default {
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        serif: ['"Baskervville"', 'Georgia', 'serif'],
+        serif: ['"Playfair Display"', '"Baskervville"', 'Georgia', 'serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
       },
       borderRadius: {
         card: '12px',
