@@ -24,6 +24,7 @@ export default function FinalCta({ onOpenAppointmentModal }) {
         <div className="relative rounded-3xl md:rounded-[42px] 4k:rounded-[56px] bg-savelix-plum text-white p-8 sm:p-14 lg:p-20 3xl:p-28 overflow-hidden text-center">
           {/* Subtle Supporting SVG Orbit Detail in Plum Card */}
           <DecorOrbits
+            variant="right"
             className="-top-24 -right-24 sm:-top-28 sm:-right-28"
             opacity="opacity-10 sm:opacity-15"
             size="w-72 sm:w-96 lg:w-[480px]"

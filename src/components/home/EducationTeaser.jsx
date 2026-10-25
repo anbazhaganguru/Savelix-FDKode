@@ -42,6 +42,7 @@ export default function EducationTeaser() {
     >
       {/* Background SVG Branching Growth & Discovery (Right Margin) */}
       <DecorBranching
+        variant="right"
         className="top-8 -right-12 sm:top-12 sm:-right-8 lg:top-16 lg:right-0"
         opacity="opacity-45 sm:opacity-60 lg:opacity-75"
         size="w-52 sm:w-72 lg:w-88 xl:w-96"

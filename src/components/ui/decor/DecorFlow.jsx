@@ -22,6 +22,7 @@ export default function DecorFlow({
   return (
     <div
       aria-hidden="true"
+      data-decor-side={isLeft ? 'left' : 'right'}
       className={`savelix-decor savelix-decor--flow pointer-events-none select-none absolute z-0 ${opacity} ${className}`}
     >
       <svg

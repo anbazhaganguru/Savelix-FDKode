@@ -21,7 +21,7 @@ export default function FounderBotanicalDecor({ isHovered = false }) {
     >
       {/* 1. Ambient Lavender Radial Glow */}
       <div
-        className={`absolute -inset-4 sm:-inset-10 lg:-inset-12 rounded-[48px] sm:rounded-[52px] bg-gradient-to-tr from-savelix-purple/18 via-savelix-lavender/45 to-transparent blur-xl sm:blur-2xl lg:blur-3xl transition-[transform,opacity] duration-700 ${ // taste-skill-ignore
+        className={`absolute -inset-4 sm:-inset-10 lg:-inset-12 rounded-[48px] sm:rounded-[52px] bg-gradient-to-tr from-savelix-purple/18 via-savelix-lavender/45 to-transparent blur-md sm:blur-lg transition-[transform,opacity] duration-500 ${ // taste-skill-ignore
           isHovered ? 'opacity-100 scale-105' : 'opacity-85 scale-100'
         }`}
       />

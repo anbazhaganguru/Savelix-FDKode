@@ -20,6 +20,7 @@ export default function DecorBotanical({
   return (
     <div
       aria-hidden="true"
+      data-decor-side={isRight ? 'right' : 'left'}
       className={`savelix-decor savelix-decor--botanical pointer-events-none select-none absolute z-0 ${opacity} ${className}`}
     >
       <svg

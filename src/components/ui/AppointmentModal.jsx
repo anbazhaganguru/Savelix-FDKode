@@ -168,6 +168,7 @@ export default function AppointmentModal({ isOpen, onClose }) {
     >
       <div
         ref={modalRef}
+        data-lenis-prevent
         className="relative w-full max-w-[490px] max-h-[min(94dvh,760px)] bg-white rounded-[24px] sm:rounded-[28px] shadow-[0_24px_60px_-12px_rgba(48,43,80,0.22)] border border-savelix-border flex flex-col overflow-hidden text-left"
       >
         {/* Header Ribbon with Close Button */}

@@ -73,6 +73,7 @@ export default function WhySavelixTeaser() {
     >
       {/* Background SVG Orbits & Connected Dots (Left Outer Corner) */}
       <DecorOrbits
+        variant="left"
         className="top-1/3 -left-16 sm:top-1/3 sm:-left-12 lg:top-1/4 lg:-left-6"
         opacity="opacity-40 sm:opacity-55 lg:opacity-70"
         size="w-56 sm:w-76 lg:w-96 xl:w-[420px]"

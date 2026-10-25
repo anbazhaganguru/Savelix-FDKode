@@ -95,12 +95,13 @@
 }
 
 .animate-reveal {
-  animation: enterReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* Neutralized to allow smooth GSAP ScrollTrigger hardware-accelerated transforms without CSS keyframe collision */
+  animation: none;
 }
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -291,7 +292,6 @@
   .savelix-decor {
     pointer-events: none;
     user-select: none;
-    will-change: transform, opacity;
   }
 }
 

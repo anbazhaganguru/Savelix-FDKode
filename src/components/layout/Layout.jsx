@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import AppointmentModal from '../ui/AppointmentModal';
 import ScrollToTop from '../common/ScrollToTop';
+import MotionOrchestrator from '../common/MotionOrchestrator';
+import SmoothScrollProvider from '../../context/SmoothScrollProvider';
+import { useSmoothScroll } from '../../hooks/useSmoothScroll';
 
 /**
  * SAVELIX Shared Layout Shell
@@ -14,9 +17,27 @@ import ScrollToTop from '../common/ScrollToTop';
  * - Branded clinical Footer
  * - Accessible Appointment / Enquiry Modal
  * - Automatic Scroll-to-Top on route change
+ * - Lenis Smooth Scrolling Engine synchronized with GSAP ScrollTrigger
  */
 export default function Layout() {
+  return (
+    <SmoothScrollProvider>
+      <LayoutContent />
+    </SmoothScrollProvider>
+  );
+}
+
+function LayoutContent() {
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  const smoothScroll = useSmoothScroll();
+
+  useEffect(() => {
+    if (isAppointmentModalOpen) {
+      smoothScroll?.stop();
+    } else {
+      smoothScroll?.start();
+    }
+  }, [isAppointmentModalOpen, smoothScroll]);
 
   const handleOpenAppointmentModal = () => {
     setIsAppointmentModalOpen(true);
@@ -29,6 +50,7 @@ export default function Layout() {
   return (
     <div className="flex flex-col min-h-screen bg-savelix-lilac text-savelix-plum antialiased selection:bg-savelix-lavender selection:text-savelix-plum">
       <ScrollToTop />
+      <MotionOrchestrator />
 
       {/* Accessible Skip to Content Link */}
       <a

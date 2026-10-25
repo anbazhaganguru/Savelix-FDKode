@@ -53,6 +53,7 @@ export default function RehabilitationTeaser() {
 
       {/* Background SVG Growth Branch Decoration (Lower-Left Edge) */}
       <DecorBranching
+        variant="left"
         className="-bottom-16 -left-12 sm:-bottom-12 sm:-left-8 lg:-bottom-6 lg:left-0 -scale-x-100"
         opacity="opacity-35 sm:opacity-50 lg:opacity-65"
         size="w-48 sm:w-64 lg:w-80 xl:w-92"
