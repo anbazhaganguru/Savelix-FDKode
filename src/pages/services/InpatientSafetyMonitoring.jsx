@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
-import BackButton from '../../components/common/BackButton';
+import PageHero from '../../components/layout/PageHero';
 import {
   ShieldCheck,
   Calendar,
@@ -16,6 +16,9 @@ import {
   CheckCircle2,
   Lock,
 } from 'lucide-react';
+import DecorOrbits from '../../components/ui/decor/DecorOrbits';
+import DecorBotanical from '../../components/ui/decor/DecorBotanical';
+import DecorFlow from '../../components/ui/decor/DecorFlow';
 
 /**
  * PAGE D — INPATIENT ENVIRONMENT & SAFETY MONITORING
@@ -95,87 +98,60 @@ export default function InpatientSafetyMonitoring() {
 
   return (
     <div className="w-full bg-savelix-lilac min-h-screen">
-      {/* Top Utility Bar: Smart Back & Breadcrumbs */}
-      <div className="border-b border-savelix-border/60 bg-white/60 backdrop-blur-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <BackButton fallback="/services" />
-              <span className="hidden sm:inline-block h-4 w-px bg-savelix-border" aria-hidden="true" />
-              <nav aria-label="Breadcrumb" className="hidden sm:block">
-                <ol className="flex items-center space-x-2 text-xs text-savelix-grey">
-                  <li>
-                    <Link to="/" className="hover:text-savelix-purple transition-colors focus-visible:underline">
-                      Home
-                    </Link>
-                  </li>
-                  <li aria-hidden="true">/</li>
-                  <li>
-                    <Link to="/services" className="hover:text-savelix-purple transition-colors focus-visible:underline">
-                      Services
-                    </Link>
-                  </li>
-                  <li aria-hidden="true">/</li>
-                  <li className="text-savelix-plum font-semibold" aria-current="page">
-                    Inpatient Safety Monitoring
-                  </li>
-                </ol>
-              </nav>
-            </div>
-            <span className="text-[11px] font-semibold text-savelix-purple uppercase tracking-wider hidden md:inline-block">
-              Clinical Safeguards &amp; Hygiene
-            </span>
+
+      {/* Full-bleed Inner Page Hero */}
+      <PageHero
+        eyebrow={
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-savelix-lavender text-savelix-plum text-xs font-semibold tracking-wider uppercase border border-savelix-border/70">
+            <ShieldCheck className="w-3.5 h-3.5 text-savelix-purple" />
+            <span>SAVELIX Services</span>
           </div>
-        </div>
-      </div>
-
-      {/* Editorial Service Hero */}
-      <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-5 sm:space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-savelix-lavender text-savelix-plum text-xs font-semibold tracking-wider uppercase border border-savelix-border/70">
-              <ShieldCheck className="w-3.5 h-3.5 text-savelix-purple" />
-              <span>SAVELIX Services</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-savelix-plum tracking-tight leading-[1.15]">
-              Inpatient Environment &amp;{' '}
-              <span className="font-serif italic font-normal text-savelix-purple">Safety</span> Monitoring
-            </h1>
-
-            <p className="text-base sm:text-lg lg:text-xl text-savelix-grey leading-relaxed font-normal">
-              A safe, supportive and structured rehabilitation environment, with infection prevention and control measures, environmental safety checks and regular monitoring to protect patients, families, visitors and staff.
-            </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-3">
-              {onOpenAppointmentModal && (
-                <button
-                  type="button"
-                  onClick={onOpenAppointmentModal}
-                  className="group inline-flex items-center gap-3 pl-6 pr-2.5 py-3 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md transition-all duration-200 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2 cursor-pointer"
-                >
-                  <Calendar className="w-4 h-4 text-white/90" />
-                  <span>Book an Appointment</span>
-                  <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5">
-                    <ArrowRight className="w-3.5 h-3.5 text-white" />
-                  </span>
-                </button>
-              )}
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-savelix-lavender text-savelix-plum text-xs sm:text-sm font-medium border border-savelix-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
+        }
+        title={
+          <>
+            Inpatient Environment &amp;{' '}
+            <span className="font-serif italic font-normal text-savelix-purple">Safety</span> Monitoring
+          </>
+        }
+        description="A safe, supportive and structured rehabilitation environment, with infection prevention and control measures, environmental safety checks and regular monitoring to protect patients, families, visitors and staff."
+        image={`${import.meta.env.BASE_URL}assets/heroes/inpatient-safety.jpg`}
+        imageAlt="Calm, safe, structured inpatient mental healthcare facility environment"
+        imagePosition="object-[right_center] lg:object-[right_30%]"
+        actions={
+          <>
+            {onOpenAppointmentModal && (
+              <button
+                type="button"
+                onClick={onOpenAppointmentModal}
+                className="group inline-flex items-center gap-3 pl-6 pr-2.5 py-3 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2 cursor-pointer"
               >
-                <span>Contact Us</span>
-                <ArrowRight className="w-3.5 h-3.5 text-savelix-purple" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+                <Calendar className="w-4 h-4 text-white/90" />
+                <span>Book an Appointment</span>
+                <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5">
+                  <ArrowRight className="w-3.5 h-3.5 text-white" />
+                </span>
+              </button>
+            )}
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-savelix-lavender text-savelix-plum text-xs sm:text-sm font-medium border border-savelix-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
+            >
+              <span>Contact Us</span>
+              <ArrowRight className="w-3.5 h-3.5 text-savelix-purple" />
+            </Link>
+          </>
+        }
+      />
 
       {/* Safety Monitoring Details: Structured Editorial Protocol Stream */}
-      <section className="py-12 sm:py-16 bg-white border-y border-savelix-border/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 bg-white border-y border-savelix-border/70 relative overflow-hidden">
+        {/* Alternating Decor 1: LEFT Outer Corner */}
+        <DecorOrbits
+          variant="left"
+          className="pointer-events-none -top-12 -left-12 sm:-top-8 sm:-left-8 w-44 sm:w-56 md:w-72 lg:w-88 text-savelix-purple/15"
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-2xl mb-8 sm:mb-12 space-y-1">
             <span className="text-xs font-semibold uppercase tracking-wider text-savelix-purple">
               Protocols &amp; Safeguards
@@ -219,6 +195,12 @@ export default function InpatientSafetyMonitoring() {
       {/* Safety Principles: Deep Plum Reassurance Statement */}
       <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-savelix-plum text-white rounded-[28px] sm:rounded-[36px] p-8 sm:p-12 lg:p-14 relative overflow-hidden">
+          {/* Alternating Decor 2: RIGHT Corner within Plum Section */}
+          <DecorBotanical
+            variant="right"
+            className="pointer-events-none -top-12 -right-12 sm:-top-8 sm:-right-8 w-44 sm:w-56 md:w-72 lg:w-88 text-white/10"
+          />
+
           <div className="max-w-3xl space-y-4 relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-savelix-lavender text-xs font-semibold tracking-wider uppercase">
               <Lock className="w-3.5 h-3.5" />
@@ -237,8 +219,14 @@ export default function InpatientSafetyMonitoring() {
 
       {/* Bottom Service Navigation & Final CTA */}
       <section className="pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-[28px] sm:rounded-[36px] bg-gradient-to-br from-savelix-lavender to-white p-8 sm:p-12 lg:p-14 border border-savelix-border shadow-savelix-md flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-          <div className="space-y-2 max-w-2xl">
+        <div className="rounded-[28px] sm:rounded-[36px] bg-gradient-to-br from-savelix-lavender to-white p-8 sm:p-12 lg:p-14 border border-savelix-border shadow-savelix-md relative overflow-hidden flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+          {/* Alternating Decor 3: LEFT Corner */}
+          <DecorFlow
+            variant="left"
+            className="pointer-events-none -bottom-10 -left-10 w-44 sm:w-56 md:w-72 text-savelix-purple/20"
+          />
+
+          <div className="space-y-2 max-w-2xl relative z-10">
             <span className="text-xs font-bold uppercase tracking-widest text-savelix-purple">
               Next Service in Care Continuum
             </span>
@@ -250,7 +238,7 @@ export default function InpatientSafetyMonitoring() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3.5 flex-shrink-0 w-full sm:w-auto">
+          <div className="flex flex-wrap items-center gap-3.5 flex-shrink-0 w-full sm:w-auto relative z-10">
             {onOpenAppointmentModal && (
               <button
                 type="button"

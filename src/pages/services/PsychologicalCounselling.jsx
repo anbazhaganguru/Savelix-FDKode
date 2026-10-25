@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
-import BackButton from '../../components/common/BackButton';
+import PageHero from '../../components/layout/PageHero';
+import DecorFlow from '../../components/ui/decor/DecorFlow';
+import DecorOrbits from '../../components/ui/decor/DecorOrbits';
+import DecorBotanical from '../../components/ui/decor/DecorBotanical';
 import {
   Brain,
   Calendar,
@@ -86,87 +89,60 @@ export default function PsychologicalCounselling() {
 
   return (
     <div className="w-full bg-savelix-lilac min-h-screen">
-      {/* Top Utility Bar: Smart Back & Breadcrumbs */}
-      <div className="border-b border-savelix-border/60 bg-white/60 backdrop-blur-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <BackButton fallback="/services" />
-              <span className="hidden sm:inline-block h-4 w-px bg-savelix-border" aria-hidden="true" />
-              <nav aria-label="Breadcrumb" className="hidden sm:block">
-                <ol className="flex items-center space-x-2 text-xs text-savelix-grey">
-                  <li>
-                    <Link to="/" className="hover:text-savelix-purple transition-colors focus-visible:underline">
-                      Home
-                    </Link>
-                  </li>
-                  <li aria-hidden="true">/</li>
-                  <li>
-                    <Link to="/services" className="hover:text-savelix-purple transition-colors focus-visible:underline">
-                      Services
-                    </Link>
-                  </li>
-                  <li aria-hidden="true">/</li>
-                  <li className="text-savelix-plum font-semibold" aria-current="page">
-                    Psychological Counselling
-                  </li>
-                </ol>
-              </nav>
-            </div>
-            <span className="text-[11px] font-semibold text-savelix-purple uppercase tracking-wider hidden md:inline-block">
-              Psychotherapy &amp; Emotional Well-Being
-            </span>
+      {/* Full-bleed Inner Page Hero */}
+      <PageHero
+        eyebrow={
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-savelix-lavender text-savelix-plum text-xs font-semibold tracking-wider uppercase border border-savelix-border/70">
+            <Brain className="w-3.5 h-3.5 text-savelix-purple" />
+            <span>SAVELIX Services</span>
           </div>
-        </div>
-      </div>
-
-      {/* Editorial Service Hero */}
-      <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-5 sm:space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-savelix-lavender text-savelix-plum text-xs font-semibold tracking-wider uppercase border border-savelix-border/70">
-              <Brain className="w-3.5 h-3.5 text-savelix-purple" />
-              <span>SAVELIX Services</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-savelix-plum tracking-tight leading-[1.15]">
-              Psychological{' '}
-              <span className="font-serif italic font-normal text-savelix-purple">Counselling</span>
-            </h1>
-
-            <p className="text-base sm:text-lg lg:text-xl text-savelix-grey leading-relaxed font-normal">
-              Mental health difficulties can affect thoughts, emotions, behaviour, relationships, education, employment and everyday activities. Care considers the whole person rather than focusing only on symptoms.
-            </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-3">
-              {onOpenAppointmentModal && (
-                <button
-                  type="button"
-                  onClick={onOpenAppointmentModal}
-                  className="group inline-flex items-center gap-3 pl-6 pr-2.5 py-3 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md transition-all duration-200 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2 cursor-pointer"
-                >
-                  <Calendar className="w-4 h-4 text-white/90" />
-                  <span>Book an Appointment</span>
-                  <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5">
-                    <ArrowRight className="w-3.5 h-3.5 text-white" />
-                  </span>
-                </button>
-              )}
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-savelix-lavender text-savelix-plum text-xs sm:text-sm font-medium border border-savelix-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
+        }
+        title={
+          <>
+            Psychological{' '}
+            <span className="font-serif italic font-normal text-savelix-purple">Counselling</span>
+          </>
+        }
+        description="Mental health difficulties can affect thoughts, emotions, behaviour, relationships, education, employment and everyday activities. Care considers the whole person rather than focusing only on symptoms."
+        image={`${import.meta.env.BASE_URL}assets/heroes/psychological-counselling.jpg`}
+        imageAlt="Psychologist conducting individual counselling session in a supportive clinic environment"
+        imagePosition="object-[right_20%] lg:object-[right_15%]"
+        actions={
+          <>
+            {onOpenAppointmentModal && (
+              <button
+                type="button"
+                onClick={onOpenAppointmentModal}
+                className="group inline-flex items-center gap-3 pl-6 pr-2.5 py-3 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2 cursor-pointer"
               >
-                <span>Contact Us</span>
-                <ArrowRight className="w-3.5 h-3.5 text-savelix-purple" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+                <Calendar className="w-4 h-4 text-white/90" />
+                <span>Book an Appointment</span>
+                <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5">
+                  <ArrowRight className="w-3.5 h-3.5 text-white" />
+                </span>
+              </button>
+            )}
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-savelix-lavender text-savelix-plum text-xs sm:text-sm font-medium border border-savelix-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
+            >
+              <span>Contact Us</span>
+              <ArrowRight className="w-3.5 h-3.5 text-savelix-purple" />
+            </Link>
+          </>
+        }
+      />
 
       {/* Main Therapeutic Modalities: Editorial Structured Index */}
-      <section className="py-12 sm:py-16 bg-white border-y border-savelix-border/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 bg-white border-y border-savelix-border/70 relative overflow-hidden">
+        {/* Background SVG Flow Decoration (Section 1: Left Outer Corner) */}
+        <DecorFlow
+          variant="left"
+          className="top-4 left-0 sm:top-8 sm:left-0 lg:top-10 lg:left-0"
+          opacity="opacity-45 sm:opacity-60 lg:opacity-75"
+          size="w-44 sm:w-60 lg:w-80 xl:w-[400px] h-auto"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-2xl mb-8 sm:mb-12 space-y-1">
             <span className="text-xs font-semibold uppercase tracking-wider text-savelix-purple">
               Therapeutic Interventions
@@ -223,7 +199,15 @@ export default function PsychologicalCounselling() {
       {/* Multidisciplinary Collaborative Care: Integrated Strip */}
       <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-savelix-plum text-white rounded-[28px] sm:rounded-[36px] p-8 sm:p-12 lg:p-14 relative overflow-hidden">
-          <div className="max-w-3xl space-y-3 mb-10 sm:mb-12">
+          {/* Background SVG Orbits Decoration (Section 2: Right Outer Corner) */}
+          <DecorOrbits
+            variant="right"
+            className="-top-16 -right-16 sm:-top-20 sm:-right-20 lg:-top-24 lg:-right-24"
+            opacity="opacity-15 sm:opacity-20"
+            size="w-56 sm:w-72 lg:w-96 h-auto"
+          />
+
+          <div className="max-w-3xl space-y-3 mb-10 sm:mb-12 relative z-10">
             <span className="text-xs font-bold uppercase tracking-widest text-savelix-lavender">
               Multidisciplinary Care
             </span>
@@ -233,7 +217,7 @@ export default function PsychologicalCounselling() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10 gap-8 md:gap-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10 gap-8 md:gap-0 relative z-10">
             {collaborativeRoles.map((role, idx) => {
               const IconComp = role.icon;
               return (
@@ -259,8 +243,16 @@ export default function PsychologicalCounselling() {
 
       {/* Bottom Service Navigation & Final CTA */}
       <section className="pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-[28px] sm:rounded-[36px] bg-gradient-to-br from-savelix-lavender to-white p-8 sm:p-12 lg:p-14 border border-savelix-border shadow-savelix-md flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-          <div className="space-y-2 max-w-2xl">
+        <div className="rounded-[28px] sm:rounded-[36px] bg-gradient-to-br from-savelix-lavender to-white p-8 sm:p-12 lg:p-14 border border-savelix-border shadow-savelix-md flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 relative overflow-hidden">
+          {/* Background SVG Botanical Decoration (Section 3: Left Outer Corner) */}
+          <DecorBotanical
+            variant="left"
+            className="top-2 left-0 sm:top-4 sm:left-0 lg:top-6 lg:left-0"
+            opacity="opacity-35 sm:opacity-50 lg:opacity-65"
+            size="w-40 sm:w-52 lg:w-68 xl:w-76 h-auto"
+          />
+
+          <div className="space-y-2 max-w-2xl relative z-10">
             <span className="text-xs font-bold uppercase tracking-widest text-savelix-purple">
               Next Service in Care Continuum
             </span>

@@ -24,11 +24,19 @@ export default {
         sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         serif: ['"Playfair Display"', '"Baskervville"', 'Georgia', 'serif'],
         display: ['"Playfair Display"', 'Georgia', 'serif'],
+        outfit: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif'],
       },
       borderRadius: {
         card: '12px',
         hero: '42px',
         pill: '999px',
+      },
+      screens: {
+        'xs': '390px',
+        '2xl': '1440px',
+        '3xl': '1920px',
+        '4xl': '2560px',
+        '4k': '3840px',
       },
       spacing: {
         'desktop-section': '96px',

@@ -1,24 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Sparkles,
-  ArrowRight,
-  BookOpen,
-  Microscope,
-  Award,
-  GraduationCap,
-} from 'lucide-react';
+import { ArrowRight, BookOpen, Microscope, Award, GraduationCap } from 'lucide-react';
+import DecorBranching from '../ui/decor/DecorBranching';
 
 /**
  * Section 07: Education & Internship Teaser
  *
- * Source Authority:
- * - SAVELIX Website Content & Structure Plan (Page 4 Section 07 & Page 12 Page H)
- *
- * Balancia Visual Pattern:
- * - Balancia Section 12 ("The Psychology Journal" pattern):
- *   3-column editorial card grid, Baskervville italic heading accent,
- *   photographic integration (/assets/education-clinic.jpg), and pill CTA with circular arrow wrapper.
+ * Editorial Art Direction:
+ * - Editorial magazine layout integrating the approved education-clinic photograph
+ * - Open hierarchy replacing nested card-in-card containers
+ * - Fluid proportion scaling across mobile to 4K displays
+ * - Verbatim approved educational tracks and eligibility links preserved
  */
 export default function EducationTeaser() {
   const tracks = [
@@ -46,48 +38,61 @@ export default function EducationTeaser() {
     <section
       id="education-teaser"
       aria-labelledby="education-heading"
-      className="relative py-16 sm:py-24 lg:py-28 overflow-hidden bg-savelix-lilac"
+      className="relative py-20 sm:py-28 lg:py-32 3xl:py-40 bg-white overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-savelix-lavender text-savelix-plum text-xs font-semibold tracking-wider uppercase border border-savelix-border/80">
-            <Sparkles className="w-3.5 h-3.5 text-savelix-purple" />
-            <span>Academic &amp; Clinical Training</span>
-          </div>
+      {/* Background SVG Branching Growth & Discovery (Right Margin) */}
+      <DecorBranching
+        className="top-8 -right-12 sm:top-12 sm:-right-8 lg:top-16 lg:right-0"
+        opacity="opacity-45 sm:opacity-60 lg:opacity-75"
+        size="w-52 sm:w-72 lg:w-88 xl:w-96"
+      />
 
+      <div className="savelix-container relative z-10 space-y-12 sm:space-y-16 lg:space-y-20">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl 3xl:max-w-4xl mx-auto space-y-3 sm:space-y-4 animate-reveal">
           <h2
             id="education-heading"
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-savelix-plum tracking-tight leading-[1.2]"
+            className="text-3xl sm:text-4xl lg:text-5xl 3xl:text-6xl font-extrabold text-savelix-plum tracking-tight leading-[1.18]"
           >
             Education, Training &amp;{' '}
             <span className="font-serif italic font-normal text-savelix-purple">Internship</span>
           </h2>
 
-          <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-savelix-purple">
+          <p className="text-base sm:text-lg 3xl:text-xl font-medium text-savelix-plum">
             Theoretical learning and supervised practical exposure
           </p>
 
-          <p className="text-sm sm:text-base text-savelix-grey leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg 3xl:text-xl text-savelix-grey leading-relaxed max-w-2xl 3xl:max-w-3xl mx-auto">
             Educational support and structured internship opportunities for students pursuing
             psychology, social work, nursing and other relevant healthcare disciplines, connecting
             theoretical knowledge with guided learning.
           </p>
         </div>
 
-        {/* Feature Hero Card with Clinical Training Photo (Balancia Journal Header Treatment) */}
-        <div className="mb-10 sm:mb-12 rounded-3xl overflow-hidden border border-savelix-border shadow-savelix-md bg-white grid grid-cols-1 lg:grid-cols-12 items-center">
-          <div className="lg:col-span-6 p-8 sm:p-10 space-y-4 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-savelix-lavender text-savelix-purple">
-              <GraduationCap className="w-3.5 h-3.5" />
+        {/* Editorial Feature Spread: Image & Clinical Narrative (No Nested Card Boxes) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 3xl:gap-16 items-center">
+          {/* Photographic Anchor: Approved Clinical Learning Environment */}
+          <div className="lg:col-span-6 relative rounded-3xl 3xl:rounded-[40px] overflow-hidden bg-savelix-lavender animate-reveal">
+            <img
+              src={`${import.meta.env.BASE_URL}assets/education-clinic.jpg`}
+              alt="SAVELIX Clinical Study and Healthcare Training Library"
+              className="w-full h-[360px] sm:h-[440px] lg:h-[500px] 3xl:h-[600px] object-cover object-center"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Lead Academic Narrative */}
+          <div className="lg:col-span-6 space-y-5 3xl:space-y-7 text-left animate-reveal">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm font-semibold bg-savelix-lavender text-savelix-plum">
+              <GraduationCap className="w-4 h-4 text-savelix-purple" />
               <span>Disciplines: Psychology • Social Work • Nursing</span>
             </div>
 
-            <h3 className="text-xl sm:text-2xl font-bold text-savelix-plum">
+            <h3 className="text-2xl sm:text-3xl 3xl:text-4xl font-bold text-savelix-plum leading-snug">
               Bridging Classroom Theory with Clinical Practice
             </h3>
 
-            <p className="text-xs sm:text-sm text-savelix-grey leading-relaxed">
+            <p className="text-base sm:text-lg 3xl:text-xl text-savelix-grey leading-relaxed">
               Internship activities connect theoretical knowledge with supervised clinical exposure,
               fostering reflective thinking, professional communication, and deep respect for patient
               dignity in psychiatric and psychological care.
@@ -96,65 +101,54 @@ export default function EducationTeaser() {
             <div className="pt-2">
               <Link
                 to="/education-internship"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-savelix-purple hover:text-savelix-purple-hover"
+                className="inline-flex items-center gap-2 text-base font-semibold text-savelix-plum hover:text-savelix-purple transition-colors"
               >
                 <span>Learn about programme eligibility &amp; conditions</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-4 h-4 text-savelix-purple" />
               </Link>
             </div>
           </div>
-
-          <div className="lg:col-span-6 relative h-64 sm:h-80 lg:h-full min-h-[280px]">
-            <img
-              src={`${import.meta.env.BASE_URL}assets/education-clinic.jpg`}
-              alt="SAVELIX Clinical Study and Healthcare Training Library"
-              className="absolute inset-0 w-full h-full object-cover object-center"
-              loading="lazy"
-            />
-          </div>
         </div>
 
-        {/* 3-Column Structured Learning Tracks (Balancia 3-Card Grid Pattern) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        {/* 3 Structured Learning Tracks in Open Typographic Roster (Unboxed) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 3xl:gap-10">
           {tracks.map((track, idx) => {
             const IconComponent = track.icon;
             return (
               <div
                 key={idx}
-                className="p-6 sm:p-7 rounded-3xl bg-white border border-savelix-border shadow-savelix-sm hover:shadow-savelix-md transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
+                className="space-y-4 animate-reveal text-left"
               >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-10 h-10 rounded-2xl bg-savelix-lavender flex items-center justify-center text-savelix-purple">
-                      <IconComponent className="w-5 h-5" />
-                    </div>
-                    <span className="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-savelix-lilac text-savelix-purple border border-savelix-border">
-                      {track.badge}
-                    </span>
+                <div className="flex items-center justify-between">
+                  <div className="w-10 h-10 rounded-2xl bg-savelix-lavender flex items-center justify-center text-savelix-purple">
+                    <IconComponent className="w-5 h-5" />
                   </div>
-
-                  <h3 className="text-lg font-bold text-savelix-plum mb-2">
-                    {track.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-savelix-grey leading-relaxed">
-                    {track.desc}
-                  </p>
+                  <span className="text-sm font-semibold tracking-wide px-3 py-1 rounded-full bg-savelix-lavender text-savelix-purple">
+                    {track.badge}
+                  </span>
                 </div>
+
+                <h3 className="text-lg 3xl:text-xl font-bold text-savelix-plum">
+                  {track.title}
+                </h3>
+
+                <p className="text-base text-savelix-grey leading-relaxed">
+                  {track.desc}
+                </p>
               </div>
             );
           })}
         </div>
 
         {/* Bottom Centered Pill CTA Button */}
-        <div className="text-center pt-10 sm:pt-14">
+        <div className="text-center pt-4">
           <Link
             to="/education-internship"
-            className="group inline-flex items-center gap-3 pl-6 pr-2.5 py-3 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md transition-all duration-200 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2"
+            className="group inline-flex items-center gap-3 pl-7 pr-3 py-3.5 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-sm 3xl:text-base font-semibold tracking-wide transition-transform duration-200 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2"
           >
             <span>Education &amp; Internship</span>
             <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-200 group-hover:translate-x-1">
-              <ArrowRight className="w-3.5 h-3.5 text-white" />
+              <ArrowRight className="w-4 h-4 text-white" />
             </span>
           </Link>
         </div>

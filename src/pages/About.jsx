@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
-import BackButton from '../components/common/BackButton';
 import { Calendar, ArrowRight } from 'lucide-react';
+import PageHero from '../components/layout/PageHero';
+import FounderProfile from '../components/about/FounderProfile';
+import DecorBotanical from '../components/ui/decor/DecorBotanical';
+import DecorFlow from '../components/ui/decor/DecorFlow';
+import DecorOrbits from '../components/ui/decor/DecorOrbits';
+import DecorBranching from '../components/ui/decor/DecorBranching';
 
 /**
  * PAGE A — ABOUT US
@@ -39,86 +44,52 @@ export default function About() {
 
   return (
     <div className="w-full bg-savelix-lilac min-h-[100dvh] text-savelix-plum">
-      {/* Top Utility Bar: Smart Back & Breadcrumbs */}
-      <div className="bg-white/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <BackButton fallback="/" />
-              <nav aria-label="Breadcrumb">
-                <ol className="flex items-center space-x-2 text-sm text-savelix-plum/70">
-                  <li>
-                    <Link to="/" className="hover:text-savelix-purple transition-colors focus-visible:underline">
-                      Home
-                    </Link>
-                  </li>
-                  <li aria-hidden="true" className="text-savelix-plum/40">/</li>
-                  <li className="text-savelix-plum font-semibold" aria-current="page">
-                    About Us
-                  </li>
-                </ol>
-              </nav>
-            </div>
-            <span className="text-sm font-semibold text-savelix-purple hidden md:inline-block">
-              Clinical Care &amp; Rehabilitation
-            </span>
-          </div>
-        </div>
-      </div>
 
-      {/* Editorial Hero: Asymmetric Narrative & Clinic Facility Asset */}
-      <section className="py-16 sm:py-24 lg:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Left Narrative */}
-            <div className="lg:col-span-7 space-y-6 sm:space-y-8">
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-savelix-plum tracking-tight leading-[1.08]">
-                About <span className="font-serif italic font-normal text-savelix-purple">Savelix</span>
-              </h1>
-
-              <p className="text-lg sm:text-2xl text-savelix-plum font-normal leading-relaxed max-w-[62ch]">
-                Savelix Psychiatric Clinic and Rehabilitation Centre supports individuals and families facing mental health challenges through psychiatric care, psychological interventions, counselling and rehabilitation services.
-              </p>
-
-              <div className="pt-2 flex flex-wrap items-center gap-4">
-                {onOpenAppointmentModal && (
-                  <button
-                    type="button"
-                    onClick={onOpenAppointmentModal}
-                    className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-base font-semibold tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple cursor-pointer min-h-[48px]"
-                  >
-                    <Calendar className="w-5 h-5 text-white" />
-                    <span>Book an Appointment</span>
-                    <ArrowRight className="w-4 h-4 text-white transition-transform group-hover:translate-x-1" />
-                  </button>
-                )}
-                <Link
-                  to="/services"
-                  className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white hover:bg-savelix-lavender text-savelix-plum text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple min-h-[48px]"
-                >
-                  <span>Explore Our Services</span>
-                  <ArrowRight className="w-4 h-4 text-savelix-purple" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Facility Asset */}
-            <div className="lg:col-span-5">
-              <div className="relative mx-auto max-w-md lg:max-w-none rounded-[32px] overflow-hidden bg-savelix-lavender aspect-[4/3]">
-                <img
-                  src={`${import.meta.env.BASE_URL}assets/about-clinic.jpg`}
-                  alt="Savelix Psychiatric Clinic and Rehabilitation Centre"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Full-Width Image-Led Editorial Hero */}
+      <PageHero
+        title={
+          <>
+            About <span className="font-serif italic font-normal text-savelix-purple">Savelix</span>
+          </>
+        }
+        description="Savelix Psychiatric Clinic and Rehabilitation Centre supports individuals and families facing mental health challenges through psychiatric care, psychological interventions, counselling and rehabilitation services."
+        image={`${import.meta.env.BASE_URL}assets/heroes/about.jpg`}
+        imageAlt="Savelix Psychiatric Clinic and Rehabilitation Centre"
+        imagePosition="object-[right_20%] lg:object-[right_15%]"
+        actions={
+          <>
+            {onOpenAppointmentModal && (
+              <button
+                type="button"
+                onClick={onOpenAppointmentModal}
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-base font-semibold tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple cursor-pointer min-h-[48px]"
+              >
+                <Calendar className="w-5 h-5 text-white" />
+                <span>Book an Appointment</span>
+                <ArrowRight className="w-4 h-4 text-white transition-transform group-hover:translate-x-1" />
+              </button>
+            )}
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white hover:bg-savelix-lavender text-savelix-plum text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple min-h-[48px]"
+            >
+              <span>Explore Our Services</span>
+              <ArrowRight className="w-4 h-4 text-savelix-purple" />
+            </Link>
+          </>
+        }
+      />
 
       {/* Editorial Principles: 3 Open Columns on Crisp White Ground */}
-      <section className="py-20 sm:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
+        {/* Background SVG Botanical Decoration (Section 1: Left Outer Corner) */}
+        <DecorBotanical
+          variant="left"
+          className="top-2 left-0 sm:top-6 sm:left-0 lg:top-8 lg:left-0"
+          opacity="opacity-40 sm:opacity-55 lg:opacity-75"
+          size="w-40 sm:w-56 lg:w-72 xl:w-80 h-auto"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             {/* Approach */}
             <div className="space-y-4">
@@ -154,8 +125,15 @@ export default function About() {
       </section>
 
       {/* Vision & Mission: Deep Plum & Lavender Editorial Pair */}
-      <section className="py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 relative overflow-hidden">
+        {/* Background SVG Orbits Decoration (Section 2: Right Outer Corner) */}
+        <DecorOrbits
+          variant="right"
+          className="top-4 right-0 sm:top-8 sm:right-0 lg:top-12 lg:right-0"
+          opacity="opacity-40 sm:opacity-55 lg:opacity-70"
+          size="w-44 sm:w-60 lg:w-76 xl:w-88 h-auto"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
             {/* Vision: Deep Plum Stately Box */}
             <div className="lg:col-span-5 bg-savelix-plum text-white rounded-[32px] p-8 sm:p-12 lg:p-14 flex flex-col justify-between space-y-8">
@@ -198,8 +176,15 @@ export default function About() {
       </section>
 
       {/* Core Values: Open Typographic Manifesto */}
-      <section className="py-20 sm:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
+        {/* Background SVG Flow Decoration (Section 3: Left Outer Corner) */}
+        <DecorFlow
+          variant="left"
+          className="top-6 left-0 sm:top-10 sm:left-0 lg:top-14 lg:left-0"
+          opacity="opacity-45 sm:opacity-60 lg:opacity-75"
+          size="w-44 sm:w-60 lg:w-80 xl:w-[400px] h-auto"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-2xl mb-14 space-y-3">
             <h2 className="text-3xl sm:text-5xl font-extrabold text-savelix-plum tracking-tight">
               Core <span className="font-serif italic font-normal text-savelix-purple">Values</span>
@@ -224,9 +209,19 @@ export default function About() {
         </div>
       </section>
 
+      {/* Founder Profile: Leadership & Advocacy */}
+      <FounderProfile />
+
       {/* Closing Care Invitation: Tailored & Restrained */}
-      <section className="py-20 sm:py-28 bg-savelix-lavender">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-savelix-lavender relative overflow-hidden">
+        {/* Background SVG Branching Decoration (Section 4: Right Outer Corner) */}
+        <DecorBranching
+          variant="right"
+          className="top-4 right-0 sm:top-6 sm:right-0 lg:top-8 lg:right-0"
+          opacity="opacity-40 sm:opacity-55 lg:opacity-70"
+          size="w-44 sm:w-60 lg:w-76 xl:w-88 h-auto"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
             <div className="space-y-4 max-w-2xl">
               <h2 className="text-3xl sm:text-5xl font-extrabold text-savelix-plum tracking-tight leading-tight">

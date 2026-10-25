@@ -1,128 +1,115 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, ArrowRight, ShieldCheck, HeartHandshake, Compass } from 'lucide-react';
+import { ArrowRight, HeartHandshake, Compass, ShieldCheck } from 'lucide-react';
+import FounderPortrait from './founder/FounderPortrait';
+import DecorBotanical from '../ui/decor/DecorBotanical';
 
 /**
  * Section 02: About SAVELIX Teaser
  *
- * Source Authority:
- * - SAVELIX Website Content & Structure Plan (Page 3 Section 02 & Page 5 Page A)
- *
- * Balancia Visual Pattern:
- * - Asymmetric 2-column layout, emblem kicker, Baskervville italic heading accent,
- *   pill button with circular arrow wrapper, and 24px framed photo with ambient glow.
+ * Editorial Art Direction:
+ * - Clean editorial image-and-text composition replacing card-in-card nesting
+ * - Responsive 2-column layout expanding proportionally across 1440px to 4K
+ * - Crisp whitespace and visual hierarchy
+ * - Verbatim approved content and principles preserved strictly
+ * - Layered founder portrait with code-based botanical decor and custom Jayalakshmi plaque
+ * - Background SVG botanical growth decor at section edge (.savelix-decor)
  */
 export default function AboutTeaser() {
+  const principles = [
+    {
+      icon: HeartHandshake,
+      title: 'Whole-Person Care',
+      desc: 'Considers emotions, daily routines, and everyday functioning rather than symptoms alone.',
+    },
+    {
+      icon: Compass,
+      title: 'Full Care Journey',
+      desc: 'Support from early assessment and outpatient care to inpatient recovery and rehabilitation.',
+    },
+    {
+      icon: ShieldCheck,
+      title: 'Family-Centred',
+      desc: 'Family involvement encouraged with strict respect for individual privacy, dignity and consent.',
+    },
+  ];
+
   return (
     <section
       id="about-teaser"
       aria-labelledby="about-teaser-heading"
-      className="relative py-16 sm:py-24 lg:py-28 overflow-hidden bg-savelix-lilac"
+      className="relative py-20 sm:py-28 lg:py-32 3xl:py-40 bg-savelix-lilac overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Clinical Philosophy & Narrative */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-7 text-left">
-            {/* Kicker Badge with Star Emblem */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-savelix-lavender text-savelix-plum text-xs font-semibold tracking-wider uppercase border border-savelix-border/70">
-              <Sparkles className="w-3.5 h-3.5 text-savelix-purple" />
-              <span>Supporting Individuals &amp; Families</span>
+      {/* Background SVG Botanical Decoration (Outer Right Edge) */}
+      <DecorBotanical
+        variant="right"
+        className="-top-10 -right-12 sm:-top-16 sm:-right-8 lg:-top-20 lg:-right-4"
+        opacity="opacity-40 sm:opacity-55 lg:opacity-70"
+        size="w-52 sm:w-72 lg:w-96 xl:w-[420px] h-auto"
+      />
+
+      <div className="savelix-container relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 3xl:gap-24 items-center">
+          {/* Left Column: Clinical Philosophy & Editorial Narrative */}
+          <div className="lg:col-span-7 space-y-7 3xl:space-y-9 text-left animate-reveal">
+            <div className="space-y-3">
+              <h2
+                id="about-teaser-heading"
+                className="text-3xl sm:text-4xl lg:text-5xl 3xl:text-6xl font-extrabold text-savelix-plum tracking-tight leading-[1.18]"
+              >
+                About{' '}
+                <span className="font-serif italic font-normal text-savelix-purple">Savelix</span>
+              </h2>
+
+              <p className="text-base sm:text-lg 3xl:text-xl font-medium text-savelix-plum">
+                Supporting individuals and families through mental health challenges
+              </p>
             </div>
 
-            {/* H2 Heading with Editorial Italic Accent */}
-            <h2
-              id="about-teaser-heading"
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-savelix-plum tracking-tight leading-[1.2]"
-            >
-              About{' '}
-              <span className="font-serif italic font-normal text-savelix-purple">Savelix</span>
-            </h2>
-
-            {/* Source-backed Subtitle / Kicker (Page 3 Section 02) */}
-            <p className="text-sm sm:text-base font-semibold text-savelix-purple uppercase tracking-wider">
-              Supporting individuals and families through mental health challenges
-            </p>
-
-            {/* Lead Narrative (Page 3 Verbatim) */}
-            <p className="text-base sm:text-lg text-savelix-grey leading-relaxed font-normal">
+            {/* Verbatim Lead Narrative (Page 3 Verbatim) */}
+            <p className="text-base sm:text-lg 3xl:text-xl text-savelix-grey leading-relaxed max-w-2xl 3xl:max-w-3xl">
               Savelix provides psychiatric care, psychological interventions, counselling and
               rehabilitation services, with care that considers the whole person and everyday
               functioning.
             </p>
 
-            {/* Key Clinical Principles from Page 5 */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-              <div className="p-4 rounded-2xl bg-white/80 border border-savelix-border/80 shadow-savelix-sm space-y-1.5">
-                <div className="w-8 h-8 rounded-xl bg-savelix-lavender flex items-center justify-center text-savelix-purple">
-                  <HeartHandshake className="w-4 h-4" />
-                </div>
-                <h3 className="text-xs font-bold text-savelix-plum">Whole-Person Care</h3>
-                <p className="text-xs text-savelix-grey leading-relaxed">
-                  Considers emotions, daily routines, and everyday functioning rather than symptoms alone.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-white/80 border border-savelix-border/80 shadow-savelix-sm space-y-1.5">
-                <div className="w-8 h-8 rounded-xl bg-savelix-lavender flex items-center justify-center text-savelix-purple">
-                  <Compass className="w-4 h-4" />
-                </div>
-                <h3 className="text-xs font-bold text-savelix-plum">Full Care Journey</h3>
-                <p className="text-xs text-savelix-grey leading-relaxed">
-                  Support from early assessment and outpatient care to inpatient recovery and rehabilitation.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-white/80 border border-savelix-border/80 shadow-savelix-sm space-y-1.5">
-                <div className="w-8 h-8 rounded-xl bg-savelix-lavender flex items-center justify-center text-savelix-purple">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <h3 className="text-xs font-bold text-savelix-plum">Family-Centred</h3>
-                <p className="text-xs text-savelix-grey leading-relaxed">
-                  Family involvement encouraged with strict respect for individual privacy, dignity and consent.
-                </p>
-              </div>
+            {/* 3 Core Principles — Open Editorial Hierarchy (No Boxed Cards) */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2">
+              {principles.map((principle, idx) => {
+                const IconComponent = principle.icon;
+                return (
+                  <div key={idx} className="space-y-2.5">
+                    <div className="w-9 h-9 rounded-xl bg-savelix-lavender flex items-center justify-center text-savelix-purple">
+                      <IconComponent className="w-4 h-4" />
+                    </div>
+                    <h3 className="text-base 3xl:text-lg font-bold text-savelix-plum">
+                      {principle.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-savelix-grey leading-relaxed">
+                      {principle.desc}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
 
-            {/* Pill CTA Button matching Balancia Style */}
-            <div className="pt-2">
+            {/* Pill CTA Button */}
+            <div className="pt-4">
               <Link
                 to="/about"
-                className="group inline-flex items-center gap-3 pl-6 pr-2.5 py-3 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md transition-all duration-200 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2"
+                className="group inline-flex items-center gap-3 pl-7 pr-3 py-3.5 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-sm 3xl:text-base font-semibold tracking-wide transition-transform duration-200 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2"
               >
                 <span>About Us</span>
                 <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-200 group-hover:translate-x-1">
-                  <ArrowRight className="w-3.5 h-3.5 text-white" />
+                  <ArrowRight className="w-4 h-4 text-white" />
                 </span>
               </Link>
             </div>
           </div>
 
-          {/* Right Column: Framed Image with Ambient Glow */}
-          <div className="lg:col-span-5 relative">
-            {/* Ambient Radial Lavender Glow (Balancia feature) */}
-            <div
-              className="absolute -inset-4 bg-savelix-lavender/70 rounded-full blur-3xl pointer-events-none -z-10"
-              aria-hidden="true"
-            />
-
-            <div className="relative rounded-3xl overflow-hidden border border-savelix-border shadow-savelix-md bg-white">
-              <img
-                src={`${import.meta.env.BASE_URL}assets/about-clinic.jpg`}
-                alt="SAVELIX Calm Consultation Environment"
-                className="w-full h-[400px] sm:h-[480px] object-cover object-center"
-                loading="lazy"
-              />
-
-              {/* Bottom Subtle Gradient Card Overlay */}
-              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-savelix-plum/90 via-savelix-plum/60 to-transparent text-white">
-                <p className="text-xs font-bold tracking-wider uppercase text-savelix-lavender">
-                  Compassionate Mental Healthcare
-                </p>
-                <p className="text-xs text-white/90 mt-1">
-                  Empowering Mental Health and Emotional Well-being
-                </p>
-              </div>
-            </div>
+          {/* Right Column: Founder Presentation with Layered Frame, Botanical Elements & Custom Nameplate */}
+          <div className="lg:col-span-5 relative flex flex-col items-center pb-8 sm:pb-10 lg:pb-0">
+            <FounderPortrait />
           </div>
         </div>
       </div>

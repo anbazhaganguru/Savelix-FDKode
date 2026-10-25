@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
-import BackButton from '../../components/common/BackButton';
+import PageHero from '../../components/layout/PageHero';
 import {
   HeartCrack,
   Calendar,
@@ -14,6 +14,9 @@ import {
   Sparkles,
   ShieldAlert,
 } from 'lucide-react';
+import DecorFlow from '../../components/ui/decor/DecorFlow';
+import DecorOrbits from '../../components/ui/decor/DecorOrbits';
+import DecorBranching from '../../components/ui/decor/DecorBranching';
 
 /**
  * PAGE F — SUBSTANCE USE & ADDICTION SUPPORT
@@ -84,87 +87,60 @@ export default function SubstanceUseSupport() {
 
   return (
     <div className="w-full bg-savelix-lilac min-h-screen">
-      {/* Top Utility Bar: Smart Back & Breadcrumbs */}
-      <div className="border-b border-savelix-border/60 bg-white/60 backdrop-blur-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <BackButton fallback="/services" />
-              <span className="hidden sm:inline-block h-4 w-px bg-savelix-border" aria-hidden="true" />
-              <nav aria-label="Breadcrumb" className="hidden sm:block">
-                <ol className="flex items-center space-x-2 text-xs text-savelix-grey">
-                  <li>
-                    <Link to="/" className="hover:text-savelix-purple transition-colors focus-visible:underline">
-                      Home
-                    </Link>
-                  </li>
-                  <li aria-hidden="true">/</li>
-                  <li>
-                    <Link to="/services" className="hover:text-savelix-purple transition-colors focus-visible:underline">
-                      Services
-                    </Link>
-                  </li>
-                  <li aria-hidden="true">/</li>
-                  <li className="text-savelix-plum font-semibold" aria-current="page">
-                    Substance Use &amp; Addiction Support
-                  </li>
-                </ol>
-              </nav>
-            </div>
-            <span className="text-[11px] font-semibold text-savelix-purple uppercase tracking-wider hidden md:inline-block">
-              Specialised Recovery Care
-            </span>
+
+      {/* Full-bleed Inner Page Hero */}
+      <PageHero
+        eyebrow={
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-savelix-lavender text-savelix-plum text-xs font-semibold tracking-wider uppercase border border-savelix-border/70">
+            <HeartCrack className="w-3.5 h-3.5 text-savelix-purple" />
+            <span>SAVELIX Services</span>
           </div>
-        </div>
-      </div>
-
-      {/* Editorial Service Hero */}
-      <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-5 sm:space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-savelix-lavender text-savelix-plum text-xs font-semibold tracking-wider uppercase border border-savelix-border/70">
-              <HeartCrack className="w-3.5 h-3.5 text-savelix-purple" />
-              <span>SAVELIX Services</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-savelix-plum tracking-tight leading-[1.15]">
-              Substance Use &amp;{' '}
-              <span className="font-serif italic font-normal text-savelix-purple">Addiction</span> Support
-            </h1>
-
-            <p className="text-base sm:text-lg lg:text-xl text-savelix-grey leading-relaxed font-normal">
-              Support for individuals experiencing difficulties related to alcohol, tobacco and other psychoactive substance use through appropriate assessment, psychiatric care, psychological interventions and rehabilitation support.
-            </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-3">
-              {onOpenAppointmentModal && (
-                <button
-                  type="button"
-                  onClick={onOpenAppointmentModal}
-                  className="group inline-flex items-center gap-3 pl-6 pr-2.5 py-3 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md transition-all duration-200 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2 cursor-pointer"
-                >
-                  <Calendar className="w-4 h-4 text-white/90" />
-                  <span>Book an Appointment</span>
-                  <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5">
-                    <ArrowRight className="w-3.5 h-3.5 text-white" />
-                  </span>
-                </button>
-              )}
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-savelix-lavender text-savelix-plum text-xs sm:text-sm font-medium border border-savelix-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
+        }
+        title={
+          <>
+            Substance Use &amp;{' '}
+            <span className="font-serif italic font-normal text-savelix-purple">Addiction</span> Support
+          </>
+        }
+        description="Support for individuals experiencing difficulties related to alcohol, tobacco and other psychoactive substance use through appropriate assessment, psychiatric care, psychological interventions and rehabilitation support."
+        image={`${import.meta.env.BASE_URL}assets/heroes/substance-use-support.jpg`}
+        imageAlt="Professional addiction recovery consultation in a private, supportive clinic setting"
+        imagePosition="object-[right_20%] lg:object-[right_15%]"
+        actions={
+          <>
+            {onOpenAppointmentModal && (
+              <button
+                type="button"
+                onClick={onOpenAppointmentModal}
+                className="group inline-flex items-center gap-3 pl-6 pr-2.5 py-3 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2 cursor-pointer"
               >
-                <span>Contact Us</span>
-                <ArrowRight className="w-3.5 h-3.5 text-savelix-purple" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+                <Calendar className="w-4 h-4 text-white/90" />
+                <span>Book an Appointment</span>
+                <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5">
+                  <ArrowRight className="w-3.5 h-3.5 text-white" />
+                </span>
+              </button>
+            )}
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-savelix-lavender text-savelix-plum text-xs sm:text-sm font-medium border border-savelix-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
+            >
+              <span>Contact Us</span>
+              <ArrowRight className="w-3.5 h-3.5 text-savelix-purple" />
+            </Link>
+          </>
+        }
+      />
 
       {/* Clinical & Recovery Interventions: Editorial Stream with Dividers */}
-      <section className="py-12 sm:py-16 bg-white border-y border-savelix-border/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 bg-white border-y border-savelix-border/70 relative overflow-hidden">
+        {/* Alternating Decor 1: LEFT Outer Corner */}
+        <DecorFlow
+          variant="left"
+          className="pointer-events-none -top-12 -left-12 sm:-top-8 sm:-left-8 w-44 sm:w-56 md:w-72 lg:w-88 text-savelix-purple/15"
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-2xl mb-8 sm:mb-12 space-y-1">
             <span className="text-xs font-semibold uppercase tracking-wider text-savelix-purple">
               Clinical &amp; Recovery Interventions
@@ -208,8 +184,14 @@ export default function SubstanceUseSupport() {
       </section>
 
       {/* Expected Outcomes: Clean Editorial Checklist */}
-      <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-8">
+      <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Alternating Decor 2: RIGHT Outer Corner */}
+        <DecorOrbits
+          variant="right"
+          className="pointer-events-none -top-12 -right-12 sm:-top-8 sm:-right-8 w-44 sm:w-56 md:w-72 lg:w-88 text-savelix-purple/20"
+        />
+
+        <div className="space-y-8 relative z-10">
           <div className="space-y-2 max-w-2xl">
             <span className="text-xs font-semibold uppercase tracking-wider text-savelix-purple">
               Recovery Goals
@@ -238,8 +220,14 @@ export default function SubstanceUseSupport() {
 
       {/* Bottom Service Navigation & Final CTA */}
       <section className="pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-[28px] sm:rounded-[36px] bg-gradient-to-br from-savelix-lavender to-white p-8 sm:p-12 lg:p-14 border border-savelix-border shadow-savelix-md flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-          <div className="space-y-2 max-w-2xl">
+        <div className="rounded-[28px] sm:rounded-[36px] bg-gradient-to-br from-savelix-lavender to-white p-8 sm:p-12 lg:p-14 border border-savelix-border shadow-savelix-md relative overflow-hidden flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+          {/* Alternating Decor 3: LEFT Corner */}
+          <DecorBranching
+            variant="left"
+            className="pointer-events-none -bottom-10 -left-10 w-44 sm:w-56 md:w-72 text-savelix-purple/20"
+          />
+
+          <div className="space-y-2 max-w-2xl relative z-10">
             <span className="text-xs font-bold uppercase tracking-widest text-savelix-purple">
               Next Service in Care Continuum
             </span>
@@ -251,7 +239,7 @@ export default function SubstanceUseSupport() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3.5 flex-shrink-0 w-full sm:w-auto">
+          <div className="flex flex-wrap items-center gap-3.5 flex-shrink-0 w-full sm:w-auto relative z-10">
             {onOpenAppointmentModal && (
               <button
                 type="button"

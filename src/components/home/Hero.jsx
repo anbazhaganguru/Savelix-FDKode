@@ -1,179 +1,152 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, MapPin, ShieldCheck, HeartHandshake } from 'lucide-react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-
-// Register GSAP React plugin
-gsap.registerPlugin(useGSAP);
+import { ArrowRight, Calendar } from 'lucide-react';
 
 /**
- * SAVELIX Homepage Hero Component (Stage 3 — Balancia Reference Fidelity)
+ * SAVELIX Homepage Hero Component — Refined Centered Composition
  *
- * Strictly adheres to:
- * 1. Approved SAVELIX Website Content & Structure Plan (Page 3 Section 01 Hero):
- *    - Headline: "Comprehensive Mental Healthcare for Better Living"
- *    - Description: "Compassionate, professional and evidence-informed mental healthcare through assessment, psychiatric consultation, psychological counselling, treatment planning and rehabilitation support."
- *    - CTAs: "Book an Appointment", "Explore Our Services", "Contact Us"
- * 2. Balancia Visual Reference Design Language:
- *    - Inset framed card with 42px border radius on desktop (rounded-3xl on mobile)
- *    - Atmospheric serene visual background with deep plum/violet vignette
- *    - Staggered dual-line headline with Baskervville serif italic accents
- *    - Overlapping pill CTA button sitting across the bottom frame border with arrow circle icon
- * 3. Motion & Accessibility:
- *    - GSAP entrance timeline scoped to hero container via useGSAP
- *    - Strict prefers-reduced-motion support
- *    - Fully visible fallback if JS is disabled or delayed
+ * Art Direction & Layout:
+ * - Full-viewport safe sizing: min-h-[100svh] spanning edge-to-edge
+ * - Precisely centered hero composition accounting for transparent navbar and background focal point
+ * - Unified center axis: brand eyebrow, display headline, description, and CTA group
+ * - Disciplined 2-line display headline with balanced visual weight across all viewports
+ * - Proportional reading measure for supporting description (narrower than headline)
+ * - Composed CTA group with matched button heights, clear primary emphasis, and clean wrapping
+ * - Pure legibility scrim preserving the architectural scenery and scenic vista
+ * - Stable GSAP/ScrollTrigger hooks: data-hero-bg, data-hero-content, data-hero-eyebrow,
+ *   data-hero-heading, data-hero-description, data-hero-actions, data-hero-primary-cta, data-hero-secondary-cta
  */
 export default function Hero({ onOpenAppointmentModal }) {
-  const heroRef = useRef(null);
-
-  useGSAP(
-    () => {
-      // Respect prefers-reduced-motion
-      if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        return;
-      }
-
-      // Scoped entrance reveal
-      gsap.from('.hero-animate', {
-        y: 22,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: 'power2.out',
-        clearProps: 'all',
-      });
-    },
-    { scope: heroRef }
-  );
-
   return (
     <section
-      ref={heroRef}
       id="hero"
       aria-labelledby="hero-heading"
-      className="relative w-full px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-3 sm:pt-6 pb-14 sm:pb-20"
-      data-stage="3"
+      className="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-savelix-plum text-white text-center"
     >
-      {/* Balancia-Style Inset Framed Hero Card (42px radius on desktop) */}
-      <div className="relative w-full overflow-visible rounded-3xl md:rounded-[42px] border border-savelix-border/70 shadow-savelix-lg min-h-[580px] sm:min-h-[640px] lg:min-h-[720px] flex flex-col justify-between items-center text-center p-6 sm:p-10 lg:p-14 transition-all">
-        {/* Background Therapeutic Visual with Vignette Overlays */}
-        <div
-          className="absolute inset-0 rounded-3xl md:rounded-[42px] overflow-hidden pointer-events-none"
-          aria-hidden="true"
-        >
-          {/* Calming Atmospheric Background Image */}
+      {/* Layer 1: Full-Viewport Responsive Architectural Background (GSAP Hook: data-hero-bg) */}
+      <div
+        data-hero-bg
+        className="hero-background-layer absolute inset-0 pointer-events-none select-none overflow-hidden"
+        aria-hidden="true"
+      >
+        <picture className="w-full h-full">
+          {/* Desktop & 4K: 1024px and above */}
+          <source
+            media="(min-width: 1024px)"
+            srcSet={`${import.meta.env.BASE_URL}assets/hero/hero-desktop.png`}
+          />
+          {/* Tablet: 640px to 1023px */}
+          <source
+            media="(min-width: 640px)"
+            srcSet={`${import.meta.env.BASE_URL}assets/hero/hero-tablet.png`}
+          />
+          {/* Mobile: default fallback below 640px */}
           <img
-            src={`${import.meta.env.BASE_URL}assets/hero-bg.jpg`}
+            src={`${import.meta.env.BASE_URL}assets/hero/hero-mobile.png`}
             alt=""
-            className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000"
+            className="w-full h-full object-cover object-center"
             loading="eager"
             fetchPriority="high"
           />
+        </picture>
 
-          {/* Deep Plum & Violet Gradient Overlay for Readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-savelix-plum/90 via-savelix-plum/80 to-savelix-plum/95 backdrop-blur-[1px]" />
+        {/* Balanced Vertical Contrast Scrim preserving architectural clarity */}
+        <div className="absolute inset-0 scrim-hero-full" />
+      </div>
 
-          {/* Calming Ambient Lavender Light Glow */}
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-savelix-purple/20 rounded-full blur-3xl pointer-events-none" />
-        </div>
-
-        {/* Top Header Badge — Verified Clinic Name (Section 01 / Page 3) */}
-        <div className="hero-animate relative z-10 pt-2 sm:pt-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] sm:text-xs font-semibold tracking-wider uppercase text-savelix-lavender shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-savelix-lavender" />
-            <span>SAVELIX PSYCHIATRIC CLINIC AND REHABILITATION CENTRE</span>
+      {/* Layer 2: Centered Editorial Content Layer (GSAP Hook: data-hero-content) */}
+      <div
+        data-hero-content
+        className="hero-content-layer relative z-10 w-full savelix-container pt-24 sm:pt-28 lg:pt-32 pb-14 sm:pb-16 flex flex-col items-center justify-center text-center"
+      >
+        <div className="w-full max-w-4xl lg:max-w-5xl 3xl:max-w-6xl mx-auto flex flex-col items-center text-center space-y-6 sm:space-y-7 lg:space-y-8 animate-reveal">
+          {/* 1. Brand Identifier Eyebrow with Fine Rules (GSAP Hook: data-hero-eyebrow) */}
+          <div
+            data-hero-eyebrow
+            className="inline-flex items-center justify-center gap-2 sm:gap-3 text-[11px] sm:text-xs md:text-[13px] font-semibold tracking-[0.12em] sm:tracking-[0.18em] uppercase text-savelix-lavender/90 max-w-full px-2"
+          >
+            <span className="hidden xs:inline-block h-[1px] w-6 sm:w-10 bg-gradient-to-r from-transparent to-savelix-purple" aria-hidden="true" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#9D7BC7] shadow-[0_0_8px_rgba(157,123,199,0.8)] flex-shrink-0" aria-hidden="true" />
+            <span className="text-center">SAVELIX PSYCHIATRIC CLINIC AND REHABILITATION CENTRE</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#9D7BC7] shadow-[0_0_8px_rgba(157,123,199,0.8)] flex-shrink-0" aria-hidden="true" />
+            <span className="hidden xs:inline-block h-[1px] w-6 sm:w-10 bg-gradient-to-l from-transparent to-savelix-purple" aria-hidden="true" />
           </div>
-        </div>
 
-        {/* Center Main Stage: Editorial Typography & Verified Content */}
-        <div className="relative z-10 max-w-4xl mx-auto py-8 sm:py-12 flex flex-col items-center space-y-6 sm:space-y-7">
-          {/* Staggered Dual-Line H1 Headline with Baskervville Italic Accents */}
+          {/* 2. Editorial Serif Display Heading (GSAP Hook: data-hero-heading) */}
           <h1
             id="hero-heading"
-            className="hero-animate text-3xl sm:text-5xl md:text-6xl lg:text-[68px] font-extrabold text-white tracking-tight leading-[1.14] text-center"
+            data-hero-heading
+            className="font-serif font-normal text-[28px] xs:text-[32px] sm:text-4xl md:text-5xl lg:text-[60px] xl:text-[68px] 2xl:text-[74px] 3xl:text-[82px] 4k:text-[94px] text-white tracking-[-0.01em] leading-[1.12] sm:leading-[1.14] text-center max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto"
           >
-            <span className="block sm:-translate-x-6 md:-translate-x-12">
-              Comprehensive Mental{' '}
-              <span className="font-serif italic font-normal text-savelix-lavender">Healthcare</span>
-            </span>
-            <span className="block sm:translate-x-6 md:translate-x-12">
-              <span className="font-serif italic font-normal text-savelix-lavender">for Better</span>{' '}
-              Living
+            <span className="block text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]">Comprehensive</span>
+            <span className="block text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]">Mental Healthcare</span>
+            <span className="block drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]">
+              <span className="font-serif italic font-normal text-savelix-lavender/85">for </span>
+              <span className="font-serif italic font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#F0E6F8] via-[#D8C2F2] to-[#BFA0E8] drop-shadow-[0_2px_14px_rgba(128,101,168,0.5)]">
+                Better Living
+              </span>
             </span>
           </h1>
 
-          {/* Verified Supporting Description (Section 01 Page 3 Verbatim) */}
-          <p className="hero-animate text-sm sm:text-base md:text-lg text-savelix-lavender/90 max-w-2xl sm:max-w-3xl leading-relaxed font-normal">
+          {/* 3. Supporting Description with Controlled Measure (GSAP Hook: data-hero-description) */}
+          <p
+            data-hero-description
+            className="text-sm xs:text-base sm:text-lg lg:text-[18px] 2xl:text-xl text-savelix-lavender/95 max-w-xl sm:max-w-2xl lg:max-w-[680px] xl:max-w-[720px] 3xl:max-w-[820px] mx-auto leading-relaxed sm:leading-[1.65] font-normal"
+          >
             Compassionate, professional and evidence-informed mental healthcare through assessment,
             psychiatric consultation, psychological counselling, treatment planning and
             rehabilitation support.
           </p>
 
-          {/* Secondary Actions & Verified Location Badge */}
-          <div className="hero-animate flex flex-wrap items-center justify-center gap-3 pt-1">
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-medium border border-white/20 backdrop-blur-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            >
-              <span>Explore Our Services</span>
-              <ArrowRight className="w-3.5 h-3.5 text-savelix-lavender" />
-            </Link>
+          {/* 4. Unified CTA Group with Clear Visual Hierarchy (GSAP Hook: data-hero-actions) */}
+          <div
+            data-hero-actions
+            className="pt-2 sm:pt-4 flex flex-wrap items-center justify-center gap-3 sm:gap-4 w-full"
+          >
+            {/* Primary Appointment CTA (GSAP Hook: data-hero-primary-cta) */}
+            {onOpenAppointmentModal ? (
+              <button
+                type="button"
+                onClick={onOpenAppointmentModal}
+                data-hero-primary-cta
+                className="group relative w-auto inline-flex items-center justify-center gap-2.5 h-12 sm:h-13 px-6 sm:px-7 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-sm sm:text-base font-semibold tracking-wide shadow-[0_4px_22px_rgba(128,101,168,0.45)] hover:shadow-[0_6px_28px_rgba(128,101,168,0.6)] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                aria-label="Book an Appointment with SAVELIX"
+              >
+                <Calendar className="w-4 h-4 text-white" aria-hidden="true" />
+                <span>Book an Appointment</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+              </button>
+            ) : (
+              <Link
+                to="/contact"
+                data-hero-primary-cta
+                className="group relative w-auto inline-flex items-center justify-center gap-2.5 h-12 sm:h-13 px-6 sm:px-7 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-sm sm:text-base font-semibold tracking-wide shadow-[0_4px_22px_rgba(128,101,168,0.45)] hover:shadow-[0_6px_28px_rgba(128,101,168,0.6)] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                <Calendar className="w-4 h-4 text-white" aria-hidden="true" />
+                <span>Book an Appointment</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+              </Link>
+            )}
 
+            {/* Secondary CTA: Contact Us (GSAP Hook: data-hero-secondary-cta) */}
             <Link
               to="/contact"
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-transparent hover:bg-white/10 text-savelix-lavender text-xs sm:text-sm font-medium border border-white/15 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              data-hero-secondary-cta
+              className="w-auto inline-flex items-center justify-center gap-2 h-12 sm:h-13 px-6 sm:px-7 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm sm:text-base font-semibold tracking-wide border border-white/25 backdrop-blur-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               <span>Contact Us</span>
             </Link>
 
-            {/* Source-verified location tag (Page 14) */}
-            <span className="hidden md:inline-flex items-center gap-1 text-xs text-savelix-lavender/80 px-3 py-1.5 rounded-full bg-black/20 border border-white/10">
-              <MapPin className="w-3 h-3 text-savelix-purple" />
-              <span>Ambattur &amp; Pudur, Chennai</span>
-            </span>
-          </div>
-
-          {/* Care Trust Commitments from Page 5 */}
-          <div className="hero-animate hidden sm:flex items-center gap-4 pt-2 text-xs text-savelix-lavender/80">
-            <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Confidential &amp; Ethical Practice</span>
-            </span>
-            <span className="text-white/20" aria-hidden="true">•</span>
-            <span className="inline-flex items-center gap-1.5">
-              <HeartHandshake className="w-3.5 h-3.5 text-savelix-lavender" />
-              <span>Person-Centred Recovery</span>
-            </span>
-          </div>
-        </div>
-
-        {/* Balancia-Style Bottom Overlapping Primary CTA Button */}
-        <div className="hero-animate relative -mb-11 sm:-mb-13 z-20">
-          {onOpenAppointmentModal ? (
-            <button
-              type="button"
-              onClick={onOpenAppointmentModal}
-              className="group inline-flex items-center gap-3 pl-7 pr-3 py-3 sm:py-3.5 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs sm:text-sm font-semibold tracking-wide border-4 sm:border-8 border-savelix-lilac shadow-xl transition-all duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2 min-h-[48px]"
-              aria-label="Book an Appointment with SAVELIX Psychiatric Clinic"
-            >
-              <span>Book an Appointment</span>
-              <span className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1 shadow-inner">
-                <ArrowRight className="w-4 h-4 text-white" />
-              </span>
-            </button>
-          ) : (
+            {/* Tertiary CTA: Explore Our Services (GSAP Hook: data-hero-secondary-cta) */}
             <Link
-              to="/contact"
-              className="group inline-flex items-center gap-3 pl-7 pr-3 py-3 sm:py-3.5 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs sm:text-sm font-semibold tracking-wide border-4 sm:border-8 border-savelix-lilac shadow-xl transition-all duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2 min-h-[48px]"
+              to="/services"
+              data-hero-secondary-cta
+              className="group w-auto inline-flex items-center justify-center gap-2 h-12 sm:h-13 px-6 sm:px-7 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm sm:text-base font-semibold tracking-wide border border-white/25 backdrop-blur-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              <span>Book an Appointment</span>
-              <span className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1 shadow-inner">
-                <ArrowRight className="w-4 h-4 text-white" />
-              </span>
+              <span>Explore Our Services</span>
+              <ArrowRight className="w-4 h-4 text-white transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
-          )}
+          </div>
         </div>
       </div>
     </section>

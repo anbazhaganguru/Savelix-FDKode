@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
-import BackButton from '../../components/common/BackButton';
+import PageHero from '../../components/layout/PageHero';
 import {
   Activity,
   Calendar,
@@ -14,6 +14,10 @@ import {
   ShieldCheck,
   Sparkles,
 } from 'lucide-react';
+import DecorBotanical from '../../components/ui/decor/DecorBotanical';
+import DecorOrbits from '../../components/ui/decor/DecorOrbits';
+import DecorFlow from '../../components/ui/decor/DecorFlow';
+import DecorBranching from '../../components/ui/decor/DecorBranching';
 
 /**
  * PAGE D — PSYCHIATRIC REHABILITATION
@@ -81,104 +85,60 @@ export default function PsychiatricRehabilitation() {
 
   return (
     <div className="w-full bg-savelix-lilac min-h-screen">
-      {/* Top Utility Bar: Smart Back & Breadcrumbs */}
-      <div className="border-b border-savelix-border/60 bg-white/60 backdrop-blur-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <BackButton fallback="/services" />
-              <span className="hidden sm:inline-block h-4 w-px bg-savelix-border" aria-hidden="true" />
-              <nav aria-label="Breadcrumb" className="hidden sm:block">
-                <ol className="flex items-center space-x-2 text-xs text-savelix-grey">
-                  <li>
-                    <Link to="/" className="hover:text-savelix-purple transition-colors focus-visible:underline">
-                      Home
-                    </Link>
-                  </li>
-                  <li aria-hidden="true">/</li>
-                  <li>
-                    <Link to="/services" className="hover:text-savelix-purple transition-colors focus-visible:underline">
-                      Services
-                    </Link>
-                  </li>
-                  <li aria-hidden="true">/</li>
-                  <li className="text-savelix-plum font-semibold" aria-current="page">
-                    Psychiatric Rehabilitation
-                  </li>
-                </ol>
-              </nav>
-            </div>
-            <span className="text-[11px] font-semibold text-savelix-purple uppercase tracking-wider hidden md:inline-block">
-              Functional Recovery &amp; Living Skills
-            </span>
+
+      {/* Full-bleed Inner Page Hero */}
+      <PageHero
+        eyebrow={
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-savelix-lavender text-savelix-plum text-xs font-semibold tracking-wider uppercase border border-savelix-border/70">
+            <Activity className="w-3.5 h-3.5 text-savelix-purple" />
+            <span>SAVELIX Services</span>
           </div>
-        </div>
-      </div>
-
-      {/* Editorial Service Hero: Asymmetric Composition with Clinic Asset */}
-      <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left Narrative Column */}
-            <div className="lg:col-span-7 space-y-5 sm:space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-savelix-lavender text-savelix-plum text-xs font-semibold tracking-wider uppercase border border-savelix-border/70">
-                <Activity className="w-3.5 h-3.5 text-savelix-purple" />
-                <span>SAVELIX Services</span>
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-savelix-plum tracking-tight leading-[1.15]">
-                Psychiatric{' '}
-                <span className="font-serif italic font-normal text-savelix-purple">Rehabilitation</span>
-              </h1>
-
-              <p className="text-base sm:text-lg lg:text-xl text-savelix-grey leading-relaxed font-normal max-w-2xl">
-                Structured support for daily functioning and recovery goals. Savelix provides psychiatric care, psychological interventions, counselling and rehabilitation services, with care that considers the whole person and everyday functioning.
-              </p>
-
-              <div className="pt-2 flex flex-wrap items-center gap-3">
-                {onOpenAppointmentModal && (
-                  <button
-                    type="button"
-                    onClick={onOpenAppointmentModal}
-                    className="group inline-flex items-center gap-3 pl-6 pr-2.5 py-3 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md transition-all duration-200 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2 cursor-pointer"
-                  >
-                    <Calendar className="w-4 h-4 text-white/90" />
-                    <span>Book an Appointment</span>
-                    <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5">
-                      <ArrowRight className="w-3.5 h-3.5 text-white" />
-                    </span>
-                  </button>
-                )}
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-savelix-lavender text-savelix-plum text-xs sm:text-sm font-medium border border-savelix-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
-                >
-                  <span>Contact Us</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-savelix-purple" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Editorial Facility Portrait */}
-            <div className="lg:col-span-5">
-              <div className="relative mx-auto max-w-md lg:max-w-none">
-                <div className="relative rounded-[28px] sm:rounded-[36px] overflow-hidden border border-savelix-border/80 shadow-savelix-lg aspect-[4/3] bg-savelix-lavender">
-                  <img
-                    src={`${import.meta.env.BASE_URL}assets/rehab-clinic.jpg`}
-                    alt="Savelix Psychiatric Rehabilitation Centre"
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-savelix-plum/40 via-transparent to-transparent pointer-events-none" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        }
+        title={
+          <>
+            Psychiatric{' '}
+            <span className="font-serif italic font-normal text-savelix-purple">Rehabilitation</span>
+          </>
+        }
+        description="Structured support for daily functioning and recovery goals. Savelix provides psychiatric care, psychological interventions, counselling and rehabilitation services, with care that considers the whole person and everyday functioning."
+        image={`${import.meta.env.BASE_URL}assets/heroes/psychiatric-rehabilitation.jpg`}
+        imageAlt="Rehabilitation specialist guiding a participant through recovery and daily-living skills"
+        imagePosition="object-[right_20%] lg:object-[right_15%]"
+        actions={
+          <>
+            {onOpenAppointmentModal && (
+              <button
+                type="button"
+                onClick={onOpenAppointmentModal}
+                className="group inline-flex items-center gap-3 pl-6 pr-2.5 py-3 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2 cursor-pointer"
+              >
+                <Calendar className="w-4 h-4 text-white/90" />
+                <span>Book an Appointment</span>
+                <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5">
+                  <ArrowRight className="w-3.5 h-3.5 text-white" />
+                </span>
+              </button>
+            )}
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-savelix-lavender text-savelix-plum text-xs sm:text-sm font-medium border border-savelix-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
+            >
+              <span>Contact Us</span>
+              <ArrowRight className="w-3.5 h-3.5 text-savelix-purple" />
+            </Link>
+          </>
+        }
+      />
 
       {/* Main Content: Rehabilitation Support Matrix (Not Isolated Box Cards) */}
-      <section className="py-12 sm:py-16 bg-white border-y border-savelix-border/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 bg-white border-y border-savelix-border/70 relative overflow-hidden">
+        {/* Alternating Decor 1: LEFT Outer Corner */}
+        <DecorBotanical
+          variant="left"
+          className="pointer-events-none -top-12 -left-12 sm:-top-8 sm:-left-8 w-44 sm:w-56 md:w-72 lg:w-88 text-savelix-purple/15"
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-2xl mb-10 space-y-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-savelix-purple">
               Programme Overview
@@ -220,8 +180,14 @@ export default function PsychiatricRehabilitation() {
       </section>
 
       {/* Expected Outcomes: Clean Editorial Checklist Stream */}
-      <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-8">
+      <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Alternating Decor 2: RIGHT Outer Corner */}
+        <DecorOrbits
+          variant="right"
+          className="pointer-events-none -top-12 -right-12 sm:-top-8 sm:-right-8 w-44 sm:w-56 md:w-72 lg:w-88 text-savelix-purple/20"
+        />
+
+        <div className="space-y-8 relative z-10">
           <div className="space-y-2 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-savelix-lavender text-savelix-purple text-xs font-semibold tracking-wider uppercase border border-savelix-border">
               <Sparkles className="w-3.5 h-3.5" />
@@ -254,8 +220,14 @@ export default function PsychiatricRehabilitation() {
 
       {/* Cross-Link to Inpatient Environment and Safety Monitoring */}
       <section className="pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 sm:p-10 rounded-[28px] sm:rounded-[36px] bg-savelix-plum text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
+        <div className="p-8 sm:p-10 rounded-[28px] sm:rounded-[36px] bg-savelix-plum text-white relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          {/* Alternating Decor 3: LEFT Corner within Plum Banner */}
+          <DecorFlow
+            variant="left"
+            className="pointer-events-none -top-16 -left-16 w-52 sm:w-64 md:w-80 text-white/10"
+          />
+
+          <div className="flex items-center gap-4 relative z-10">
             <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-savelix-lavender flex-shrink-0">
               <ShieldCheck className="w-6 h-6" />
             </div>
@@ -270,7 +242,7 @@ export default function PsychiatricRehabilitation() {
           </div>
           <Link
             to="/services/inpatient-safety-monitoring"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white text-savelix-plum text-xs sm:text-sm font-semibold hover:bg-savelix-lavender transition-colors flex-shrink-0 shadow-sm"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white text-savelix-plum text-xs sm:text-sm font-semibold hover:bg-savelix-lavender transition-colors flex-shrink-0 shadow-sm relative z-10"
           >
             <span>View Safety Monitoring</span>
             <ArrowRight className="w-3.5 h-3.5 text-savelix-purple" />
@@ -280,8 +252,14 @@ export default function PsychiatricRehabilitation() {
 
       {/* Bottom Service Navigation & Final CTA */}
       <section className="pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-[28px] sm:rounded-[36px] bg-gradient-to-br from-savelix-lavender to-white p-8 sm:p-12 lg:p-14 border border-savelix-border shadow-savelix-md flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-          <div className="space-y-2 max-w-2xl">
+        <div className="rounded-[28px] sm:rounded-[36px] bg-gradient-to-br from-savelix-lavender to-white p-8 sm:p-12 lg:p-14 border border-savelix-border shadow-savelix-md relative overflow-hidden flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+          {/* Alternating Decor 4: RIGHT Corner */}
+          <DecorBranching
+            variant="right"
+            className="pointer-events-none -bottom-10 -right-10 w-44 sm:w-56 md:w-72 text-savelix-purple/20"
+          />
+
+          <div className="space-y-2 max-w-2xl relative z-10">
             <span className="text-xs font-bold uppercase tracking-widest text-savelix-purple">
               Next Service in Care Continuum
             </span>
@@ -293,7 +271,7 @@ export default function PsychiatricRehabilitation() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3.5 flex-shrink-0 w-full sm:w-auto">
+          <div className="flex flex-wrap items-center gap-3.5 flex-shrink-0 w-full sm:w-auto relative z-10">
             {onOpenAppointmentModal && (
               <button
                 type="button"

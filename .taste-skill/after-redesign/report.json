@@ -1,0 +1,2269 @@
+{
+ "url": "http://localhost:5173",
+ "at": "2026-10-23T06:58:58.403Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 12,
+   "filled": [
+    0.8,
+    0.49,
+    1,
+    0.77,
+    0.76,
+    0.74,
+    0.92,
+    0.6,
+    0.54,
+    0.86,
+    0.82,
+    0.85
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 10794,
+     "screens": 12,
+     "words": 1097,
+     "img": 12,
+     "video": 0,
+     "canvas": 0,
+     "svg": 64,
+     "sections": 8,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 10,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "hero-bg.jpg",
+      "about-clinic.jpg",
+      "about-clinic.jpg",
+      "center-room.png",
+      "rehab-clinic.jpg",
+      "about-clinic.jpg",
+      "hero-bg.jpg",
+      "education-clinic.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Comprehensive Mental Healthcare for Better Living",
+     "words": 6,
+     "chars": 49,
+     "lines": 3,
+     "size": 68,
+     "vw": 4.7,
+     "font": "Plus Jakarta Sans",
+     "weight": 800,
+     "tracking": -0.025,
+     "leading": 1,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "center",
+     "position": "center",
+     "widthRatio": 0.62,
+     "top": 253,
+     "mixedFonts": [
+      "Plus Jakarta Sans",
+      "Playfair Display italic"
+     ],
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Comprehensive Mental Healthcare for Better Living",
+     "words": 6,
+     "lines": 3,
+     "size": 68,
+     "font": "Plus Jakarta Sans"
+    },
+    "headings": [
+     {
+      "text": "Comprehensive Mental Healthcare for Better Living",
+      "words": 6,
+      "chars": 49,
+      "lines": 3,
+      "size": 68,
+      "vw": 4.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.62,
+      "top": 253,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "About Savelix",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 48,
+      "vw": 3.3,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.52,
+      "top": 1112,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Our Services",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 48,
+      "vw": 3.3,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.53,
+      "top": 1889,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Mental Health Conditions We Support",
+      "words": 5,
+      "chars": 35,
+      "lines": 2,
+      "size": 48,
+      "vw": 3.3,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.53,
+      "top": 3494,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Psychiatric Rehabilitation",
+      "words": 2,
+      "chars": 26,
+      "lines": 1,
+      "size": 48,
+      "vw": 3.3,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.53,
+      "top": 4933,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Why Choose Savelix?",
+      "words": 3,
+      "chars": 19,
+      "lines": 1,
+      "size": 48,
+      "vw": 3.3,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.53,
+      "top": 6446,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Education, Training & Internship",
+      "words": 4,
+      "chars": 32,
+      "lines": 1,
+      "size": 48,
+      "vw": 3.3,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.53,
+      "top": 7927,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Bridging Classroom Theory with Clinical Practice",
+      "words": 6,
+      "chars": 48,
+      "lines": 2,
+      "size": 30,
+      "vw": 2.1,
+      "font": "Plus Jakarta Sans",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.44,
+      "top": 8356,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Take the First Step Towards Better Mental Health",
+      "words": 8,
+      "chars": 48,
+      "lines": 2,
+      "size": 48,
+      "vw": 3.3,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.53,
+      "top": 9496,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 9,
+     "maxLines": 3,
+     "over2Lines": 1,
+     "statements": 0,
+     "centered": 6,
+     "medianWords": 4,
+     "mixedFontHeadings": 8
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Plus Jakarta Sans",
+       "share": 0.97,
+       "mono": false
+      },
+      {
+       "family": "Playfair Display",
+       "share": 0.03,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      11,
+      12,
+      14,
+      16,
+      18,
+      20,
+      24,
+      30,
+      48,
+      68
+     ],
+     "sizeCount": 10,
+     "notLoaded": [],
+     "body": {
+      "font": "Plus Jakarta Sans",
+      "size": 16,
+      "leading": 1.5,
+      "weight": 600,
+      "tracking": 0.05,
+      "contrast": 4.4
+     },
+     "measureChars": 85,
+     "max": {
+      "size": 68,
+      "vw": 4.7,
+      "font": "Plus Jakarta Sans",
+      "text": "Comprehensive Mental Healthcare"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 2,
+     "microLabelShare": 0.004,
+     "microSamples": [
+      "Clinic Navigation",
+      "Clinical Services"
+     ],
+     "upperShare": 0.06,
+     "centerShare": 0.22,
+     "smallText": 30
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f7f3fa",
+     "bodyBgHsl": {
+      "h": 274,
+      "s": 0.41,
+      "l": 0.97
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#f7f3fa",
+       "top": 0,
+       "hsl": {
+        "h": 274,
+        "s": 0.41,
+        "l": 0.97
+       }
+      },
+      {
+       "color": "#302b50",
+       "top": 105,
+       "hsl": {
+        "h": 248,
+        "s": 0.3,
+        "l": 0.24
+       }
+      },
+      {
+       "color": "#ffffff",
+       "top": 1761,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      },
+      {
+       "color": "#ede5f4",
+       "top": 2042,
+       "hsl": {
+        "h": 272,
+        "s": 0.41,
+        "l": 0.93
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#666477",
+       "share": 0.44
+      },
+      {
+       "color": "#302b50",
+       "share": 0.23
+      },
+      {
+       "color": "#ede6f4",
+       "share": 0.09
+      },
+      {
+       "color": "#ede5f4",
+       "share": 0.07
+      },
+      {
+       "color": "#8065a8",
+       "share": 0.07
+      }
+     ],
+     "button": {
+      "bg": "#8065a8",
+      "hsl": {
+       "h": 264,
+       "s": 0.28,
+       "l": 0.53
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": [
+      {
+       "text": "Read detailed conditions guide",
+       "ratio": 3.9,
+       "need": 4.5,
+       "size": 14,
+       "fg": "#8065a8",
+       "bg": "#ede5f4"
+      },
+      {
+       "text": "Supporting individuals and families thro",
+       "ratio": 4.4,
+       "need": 4.5,
+       "size": 16,
+       "fg": "#8065a8",
+       "bg": "#f7f3fa"
+      },
+      {
+       "text": "Support for a range of mental health con",
+       "ratio": 4.4,
+       "need": 4.5,
+       "size": 16,
+       "fg": "#8065a8",
+       "bg": "#f7f3fa"
+      }
+     ]
+    },
+    "buttons": {
+     "count": 11,
+     "inHero": 2,
+     "radius": "pill",
+     "height": 60,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Book an Appointment",
+      "Book an Appointment"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 3,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "button.inline-flex.items-center → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      "button.inline-flex.items-center → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      "div.inline-flex.items-center → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0"
+     ],
+     "gradients": 0,
+     "scrims": 6,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 7,
+     "hairlineSamples": [
+      "header.sticky.top-0 1440px",
+      "footer.bg-savelix-plum.text-white 1440px",
+      "div.border-b.border-white/10 1440px",
+      "h3.text-xs.font-bold 302px",
+      "h3.text-xs.font-bold 416px"
+     ],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 1,
+     "roundedBoxes": 33,
+     "boxRadius": 24,
+     "squareMedia": 0,
+     "roundedMedia": 10,
+     "mediaRadius": 24,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 4,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 2614
+      },
+      {
+       "count": 8,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 3767
+      },
+      {
+       "count": 8,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 6715
+      },
+      {
+       "count": 3,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 8776
+      }
+     ]
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.89
+     }
+    ],
+    "nav": {
+     "links": 7,
+     "fixed": true,
+     "height": 81,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": [
+     "playfair display",
+     "plus jakarta sans"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 10794,
+    "margins": {
+     "left": 56,
+     "right": 56
+    },
+    "sections": [
+     {
+      "sel": "main#main-content.flex-1.w-full",
+      "tag": "main",
+      "top": 81,
+      "height": 10027,
+      "words": 1077,
+      "media": 10,
+      "middle": 0,
+      "heading": {
+       "text": "Comprehensive Mental Healthcare",
+       "size": 68,
+       "tag": "h1"
+      },
+      "left": 56,
+      "right": 56,
+      "textLeft": 56,
+      "textRight": 63,
+      "fullBleed": true,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.bg-savelix-plum.text-white",
+      "tag": "footer",
+      "top": 10108,
+      "height": 686,
+      "words": 199,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Take the First Step Towards Better Mental Health",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 56,
+      "right": 56,
+      "textLeft": 56,
+      "textRight": 56,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Comprehensive Mental Healthcare for Better Living",
+      "size": 68,
+      "top": 253,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 84,
+      "n": 10
+     },
+     {
+      "x": 56,
+      "n": 9
+     },
+     {
+      "x": 768,
+      "n": 8
+     },
+     {
+      "x": 130,
+      "n": 6
+     },
+     {
+      "x": 812,
+      "n": 5
+     },
+     {
+      "x": 426,
+      "n": 4
+     },
+     {
+      "x": 736,
+      "n": 4
+     },
+     {
+      "x": 1110,
+      "n": 4
+     },
+     {
+      "x": 312,
+      "n": 3
+     },
+     {
+      "x": 396,
+      "n": 2
+     },
+     {
+      "x": 541,
+      "n": 2
+     },
+     {
+      "x": 571,
+      "n": 2
+     }
+    ],
+    "leftBlocks": 68,
+    "bodySize": 16,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 12,
+   "filled": [
+    0.69,
+    0.62,
+    0.93,
+    1,
+    0.88,
+    0.76,
+    0.76,
+    0.78,
+    0.65,
+    0.66,
+    0.83,
+    0.8
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 13438,
+     "screens": 13.1,
+     "words": 1080,
+     "img": 12,
+     "video": 0,
+     "canvas": 0,
+     "svg": 64,
+     "sections": 8,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 10,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "hero-bg.jpg",
+      "about-clinic.jpg",
+      "about-clinic.jpg",
+      "center-room.png",
+      "rehab-clinic.jpg",
+      "about-clinic.jpg",
+      "hero-bg.jpg",
+      "education-clinic.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Comprehensive Mental Healthcare for Better Living",
+     "words": 6,
+     "chars": 49,
+     "lines": 3,
+     "size": 60,
+     "vw": 7.8,
+     "font": "Plus Jakarta Sans",
+     "weight": 800,
+     "tracking": -0.025,
+     "leading": 1,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "center",
+     "position": "center",
+     "widthRatio": 0.83,
+     "top": 221,
+     "mixedFonts": [
+      "Plus Jakarta Sans",
+      "Playfair Display italic"
+     ],
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Comprehensive Mental Healthcare for Better Living",
+     "words": 6,
+     "lines": 3,
+     "size": 60,
+     "font": "Plus Jakarta Sans"
+    },
+    "headings": [
+     {
+      "text": "Comprehensive Mental Healthcare for Better Living",
+      "words": 6,
+      "chars": 49,
+      "lines": 3,
+      "size": 60,
+      "vw": 7.8,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.83,
+      "top": 221,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "About Savelix",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.11,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.95,
+      "top": 997,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Our Services",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.11,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.95,
+      "top": 2285,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Mental Health Conditions We Support",
+      "words": 5,
+      "chars": 35,
+      "lines": 1,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.11,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.95,
+      "top": 4954,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Psychiatric Rehabilitation",
+      "words": 2,
+      "chars": 26,
+      "lines": 1,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.11,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.95,
+      "top": 6575,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Why Choose Savelix?",
+      "words": 3,
+      "chars": 19,
+      "lines": 1,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.11,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.95,
+      "top": 8164,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Education, Training & Internship",
+      "words": 4,
+      "chars": 32,
+      "lines": 1,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.11,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.95,
+      "top": 9993,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Bridging Classroom Theory with Clinical Practice",
+      "words": 6,
+      "chars": 48,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Plus Jakarta Sans",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.95,
+      "top": 10758,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Take the First Step Towards Better Mental Health",
+      "words": 8,
+      "chars": 48,
+      "lines": 2,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.11,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 11834,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 9,
+     "maxLines": 3,
+     "over2Lines": 1,
+     "statements": 0,
+     "centered": 6,
+     "medianWords": 4,
+     "mixedFontHeadings": 8
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Plus Jakarta Sans",
+       "share": 0.97,
+       "mono": false
+      },
+      {
+       "family": "Playfair Display",
+       "share": 0.03,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      11,
+      12,
+      14,
+      16,
+      18,
+      20,
+      24,
+      30,
+      36,
+      60
+     ],
+     "sizeCount": 10,
+     "notLoaded": [],
+     "body": {
+      "font": "Plus Jakarta Sans",
+      "size": 16,
+      "leading": 1.5,
+      "weight": 600,
+      "tracking": 0.05,
+      "contrast": 4.4
+     },
+     "measureChars": 68,
+     "max": {
+      "size": 60,
+      "vw": 7.8,
+      "font": "Plus Jakarta Sans",
+      "text": "Comprehensive Mental Healthcare"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 2,
+     "microLabelShare": 0.004,
+     "microSamples": [
+      "Clinic Navigation",
+      "Clinical Services"
+     ],
+     "upperShare": 0.06,
+     "centerShare": 0.22,
+     "smallText": 29
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f7f3fa",
+     "bodyBgHsl": {
+      "h": 274,
+      "s": 0.41,
+      "l": 0.97
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#f7f3fa",
+       "top": 0,
+       "hsl": {
+        "h": 274,
+        "s": 0.41,
+        "l": 0.97
+       }
+      },
+      {
+       "color": "#302b50",
+       "top": 105,
+       "hsl": {
+        "h": 248,
+        "s": 0.3,
+        "l": 0.24
+       }
+      },
+      {
+       "color": "#ffffff",
+       "top": 1541,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      },
+      {
+       "color": "#ede5f4",
+       "top": 2430,
+       "hsl": {
+        "h": 272,
+        "s": 0.41,
+        "l": 0.93
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#666477",
+       "share": 0.45
+      },
+      {
+       "color": "#302b50",
+       "share": 0.22
+      },
+      {
+       "color": "#ede6f4",
+       "share": 0.1
+      },
+      {
+       "color": "#ede5f4",
+       "share": 0.07
+      },
+      {
+       "color": "#8065a8",
+       "share": 0.07
+      }
+     ],
+     "button": {
+      "bg": "#8065a8",
+      "hsl": {
+       "h": 264,
+       "s": 0.28,
+       "l": 0.53
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": [
+      {
+       "text": "Supporting individuals and families thro",
+       "ratio": 4.4,
+       "need": 4.5,
+       "size": 16,
+       "fg": "#8065a8",
+       "bg": "#f7f3fa"
+      },
+      {
+       "text": "Support for a range of mental health con",
+       "ratio": 4.4,
+       "need": 4.5,
+       "size": 16,
+       "fg": "#8065a8",
+       "bg": "#f7f3fa"
+      }
+     ]
+    },
+    "buttons": {
+     "count": 10,
+     "inHero": 1,
+     "radius": "pill",
+     "height": 60,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Book an Appointment"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 2,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "button.inline-flex.items-center → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      "div.inline-flex.items-center → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0"
+     ],
+     "gradients": 0,
+     "scrims": 6,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 7,
+     "hairlineSamples": [
+      "header.sticky.top-0 768px",
+      "footer.bg-savelix-plum.text-white 768px",
+      "div.border-b.border-white/10 768px",
+      "h3.text-xs.font-bold 345px",
+      "h3.text-xs.font-bold 345px"
+     ],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 1,
+     "roundedBoxes": 33,
+     "boxRadius": 24,
+     "squareMedia": 0,
+     "roundedMedia": 10,
+     "mediaRadius": 24,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 4,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 3574
+      },
+      {
+       "count": 8,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 5171
+      },
+      {
+       "count": 8,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 8409
+      },
+      {
+       "count": 3,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 11014
+      }
+     ]
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.71
+     }
+    ],
+    "nav": {
+     "links": 1,
+     "fixed": true,
+     "height": 81,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": [
+     "playfair display",
+     "plus jakarta sans"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 13438,
+    "margins": {
+     "left": 19,
+     "right": 19
+    },
+    "sections": [
+     {
+      "sel": "main#main-content.flex-1.w-full",
+      "tag": "main",
+      "top": 81,
+      "height": 12337,
+      "words": 1077,
+      "media": 10,
+      "middle": 0,
+      "heading": {
+       "text": "Comprehensive Mental Healthcare",
+       "size": 60,
+       "tag": "h1"
+      },
+      "left": 19,
+      "right": 19,
+      "textLeft": 19,
+      "textRight": 27,
+      "fullBleed": true,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.bg-savelix-plum.text-white",
+      "tag": "footer",
+      "top": 12418,
+      "height": 1020,
+      "words": 199,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Take the First Step Towards Better Mental Health",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 19,
+      "right": 19,
+      "textLeft": 19,
+      "textRight": 19,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Comprehensive Mental Healthcare for Better Living",
+      "size": 60,
+      "top": 221,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 47,
+      "n": 14
+     },
+     {
+      "x": 19,
+      "n": 13
+     },
+     {
+      "x": 428,
+      "n": 12
+     },
+     {
+      "x": 93,
+      "n": 6
+     },
+     {
+      "x": 474,
+      "n": 6
+     },
+     {
+      "x": 400,
+      "n": 4
+     },
+     {
+      "x": 103,
+      "n": 3
+     },
+     {
+      "x": 270,
+      "n": 2
+     },
+     {
+      "x": 305,
+      "n": 2
+     },
+     {
+      "x": 522,
+      "n": 2
+     },
+     {
+      "x": 559,
+      "n": 2
+     },
+     {
+      "x": 131,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 68,
+    "bodySize": 16,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 12,
+   "filled": [
+    0.71,
+    0.45,
+    0.9,
+    1,
+    1,
+    1,
+    0.83,
+    0.8,
+    0.72,
+    1,
+    0.91,
+    0.78
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 16500,
+     "screens": 19.5,
+     "words": 1069,
+     "img": 12,
+     "video": 0,
+     "canvas": 0,
+     "svg": 64,
+     "sections": 8,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 10,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "hero-bg.jpg",
+      "about-clinic.jpg",
+      "about-clinic.jpg",
+      "center-room.png",
+      "rehab-clinic.jpg",
+      "about-clinic.jpg",
+      "hero-bg.jpg",
+      "education-clinic.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Comprehensive Mental Healthcare for Better Living",
+     "words": 6,
+     "chars": 49,
+     "lines": 3,
+     "size": 30,
+     "vw": 7.7,
+     "font": "Plus Jakarta Sans",
+     "weight": 800,
+     "tracking": -0.025,
+     "leading": 1.12,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "center",
+     "position": "center",
+     "widthRatio": 0.82,
+     "top": 189,
+     "mixedFonts": [
+      "Plus Jakarta Sans",
+      "Playfair Display italic"
+     ],
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Comprehensive Mental Healthcare for Better Living",
+     "words": 6,
+     "lines": 3,
+     "size": 30,
+     "font": "Plus Jakarta Sans"
+    },
+    "headings": [
+     {
+      "text": "Comprehensive Mental Healthcare for Better Living",
+      "words": 6,
+      "chars": 49,
+      "lines": 3,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.82,
+      "top": 189,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "About Savelix",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 816,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Our Services",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2236,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Mental Health Conditions We Support",
+      "words": 5,
+      "chars": 35,
+      "lines": 2,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 5575,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Psychiatric Rehabilitation",
+      "words": 2,
+      "chars": 26,
+      "lines": 1,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 7760,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Why Choose Savelix?",
+      "words": 3,
+      "chars": 19,
+      "lines": 1,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 9510,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Education, Training & Internship",
+      "words": 4,
+      "chars": 32,
+      "lines": 2,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 12100,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Bridging Classroom Theory with Clinical Practice",
+      "words": 6,
+      "chars": 48,
+      "lines": 2,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Plus Jakarta Sans",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.38,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 12852,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Take the First Step Towards Better Mental Health",
+      "words": 8,
+      "chars": 48,
+      "lines": 3,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Plus Jakarta Sans",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 14265,
+      "mixedFonts": [
+       "Plus Jakarta Sans",
+       "Playfair Display italic"
+      ],
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 9,
+     "maxLines": 3,
+     "over2Lines": 2,
+     "statements": 0,
+     "centered": 6,
+     "medianWords": 4,
+     "mixedFontHeadings": 8
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Plus Jakarta Sans",
+       "share": 0.97,
+       "mono": false
+      },
+      {
+       "family": "Playfair Display",
+       "share": 0.03,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      11,
+      12,
+      14,
+      16,
+      18,
+      20,
+      24,
+      30
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "Plus Jakarta Sans",
+      "size": 14,
+      "leading": 1.43,
+      "weight": 600,
+      "tracking": 0.05,
+      "contrast": 4.4
+     },
+     "measureChars": 38,
+     "max": {
+      "size": 30,
+      "vw": 7.7,
+      "font": "Plus Jakarta Sans",
+      "text": "Comprehensive Mental Healthcare"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 9,
+     "microLabelShare": 0.046,
+     "microSamples": [
+      "Supporting individuals and families thro",
+      "Comprehensive Psychiatric Care and Psych",
+      "Support for a range of mental health con",
+      "Structured support for daily functioning",
+      "Compassionate Care. Professional Experti",
+      "Theoretical learning and supervised prac"
+     ],
+     "upperShare": 0.06,
+     "centerShare": 0.23,
+     "smallText": 44
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f7f3fa",
+     "bodyBgHsl": {
+      "h": 274,
+      "s": 0.41,
+      "l": 0.97
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#f7f3fa",
+       "top": 0,
+       "hsl": {
+        "h": 274,
+        "s": 0.41,
+        "l": 0.97
+       }
+      },
+      {
+       "color": "#302b50",
+       "top": 93,
+       "hsl": {
+        "h": 248,
+        "s": 0.3,
+        "l": 0.24
+       }
+      },
+      {
+       "color": "#ffffff",
+       "top": 1636,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      },
+      {
+       "color": "#ede5f4",
+       "top": 2371,
+       "hsl": {
+        "h": 272,
+        "s": 0.41,
+        "l": 0.93
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#666477",
+       "share": 0.45
+      },
+      {
+       "color": "#302b50",
+       "share": 0.23
+      },
+      {
+       "color": "#ede6f4",
+       "share": 0.1
+      },
+      {
+       "color": "#8065a8",
+       "share": 0.07
+      },
+      {
+       "color": "#ede5f4",
+       "share": 0.07
+      }
+     ],
+     "button": {
+      "bg": "#8065a8",
+      "hsl": {
+       "h": 264,
+       "s": 0.28,
+       "l": 0.53
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": [
+      {
+       "text": "Supporting individuals and families thro",
+       "ratio": 4.4,
+       "need": 4.5,
+       "size": 14,
+       "fg": "#8065a8",
+       "bg": "#f7f3fa"
+      }
+     ]
+    },
+    "buttons": {
+     "count": 10,
+     "inHero": 1,
+     "radius": "pill",
+     "height": 60,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Book an Appointment"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 2,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "button.inline-flex.items-center → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      "div.inline-flex.items-center → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0"
+     ],
+     "gradients": 0,
+     "scrims": 6,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 7,
+     "hairlineSamples": [
+      "header.sticky.top-0 390px",
+      "footer.bg-savelix-plum.text-white 390px",
+      "div.border-b.border-white/10 390px",
+      "h3.text-xs.font-bold 358px",
+      "h3.text-xs.font-bold 358px"
+     ],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 1,
+     "roundedBoxes": 32,
+     "boxRadius": 24,
+     "squareMedia": 0,
+     "roundedMedia": 10,
+     "mediaRadius": 24,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.72
+     }
+    ],
+    "nav": {
+     "links": 1,
+     "fixed": true,
+     "height": 81,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": [
+     "playfair display",
+     "plus jakarta sans"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 16500,
+    "margins": {
+     "left": 16,
+     "right": 16
+    },
+    "sections": [
+     {
+      "sel": "main#main-content.flex-1.w-full",
+      "tag": "main",
+      "top": 81,
+      "height": 14871,
+      "words": 1067,
+      "media": 9,
+      "middle": 0,
+      "heading": {
+       "text": "Comprehensive Mental Healthcare",
+       "size": 30,
+       "tag": "h1"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 18,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.border-b.border-white/10",
+      "tag": "div",
+      "top": 14953,
+      "height": 331,
+      "words": 33,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Take the First Step Towards Better Mental Health",
+       "size": 20,
+       "tag": "h2"
+      },
+      "left": 34,
+      "right": 34,
+      "textLeft": 34,
+      "textRight": 34,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.savelix-container.py-14",
+      "tag": "div",
+      "top": 15285,
+      "height": 1215,
+      "words": 166,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Clinic Navigation",
+       "size": 12,
+       "tag": "h3"
+      },
+      "left": 16,
+      "right": 25,
+      "textLeft": 16,
+      "textRight": 25,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Comprehensive Mental Healthcare for Better Living",
+      "size": 30,
+      "top": 189,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 40,
+      "n": 30
+     },
+     {
+      "x": 16,
+      "n": 21
+     },
+     {
+      "x": 82,
+      "n": 14
+     },
+     {
+      "x": 96,
+      "n": 1
+     },
+     {
+      "x": 109,
+      "n": 1
+     },
+     {
+      "x": 176,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 68,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "FAIL",
+   "id": "headline-lines",
+   "width": 1440,
+   "message": "1 headline(s) wrap past two lines at 1440px: \"Comprehensive Mental Healthcare for Better Livin\" → 3 lines (6 words, 68px)",
+   "fix": "Cut words first (a headline is a title, not a sentence). Then give it a wider measure. Lower the size only as a last resort and never below the scale you chose. A real statement paragraph belongs in a <p> or <blockquote> at 36px or less."
+  },
+  {
+   "level": "WARN",
+   "id": "mixed-font-headline",
+   "width": 1440,
+   "message": "8 headline(s) switch typeface or to italic mid-line (the \"one italic serif word\" move).",
+   "fix": "Set the whole headline in one face. Emphasis comes from the words.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "micro-label",
+   "width": 1440,
+   "message": "2 tiny uppercase letter-spaced label(s): \"Clinic Navigation\", \"Clinical Services\"",
+   "fix": "Prefer sentence case at body size.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "shadow",
+   "width": 1440,
+   "message": "3 box-shadow(s) on elements at rest: button.inline-flex.items-center → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0 | button.inline-flex.items-center → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0 | div.inline-flex.items-center → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+   "fix": "Remove. Separate surfaces with a tone step or space. Shadows are for things that really float (menus, dialogs, sticky bars).",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "hairline",
+   "width": 1440,
+   "message": "7 thin rule(s)/divider line(s): header.sticky.top-0 1440px | footer.bg-savelix-plum.text-white 1440px | div.border-b.border-white/10 1440px | h3.text-xs.font-bold 302px",
+   "fix": "Delete. Separate with space, a tone change, or scale. Lines are only for real tables and form fields.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "icon-cards",
+   "width": 1440,
+   "message": "3 row(s) of identical cards each topped with a small icon (8, 8, 3 cards).",
+   "fix": "Replace with one composed section from the direction: a narrative split, a list set in large type, or real imagery per item.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "contrast",
+   "width": 1440,
+   "message": "Low-contrast text: \"Read detailed conditions guide\" 3.9:1 needs 4.5:1; \"Supporting individuals and families thro\" 4.4:1 needs 4.5:1; \"Support for a range of mental health con\" 4.4:1 needs 4.5:1",
+   "fix": "Darken or lighten the text colour.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 1440,
+   "message": "10 different font sizes (11, 12, 14, 16, 18, 20, 24, 30, 48, 68).",
+   "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "grey-body",
+   "width": 1440,
+   "message": "The running text is a soft grey on its ground (4.4:1).",
+   "fix": "Set body copy in the full ink (7:1 or more). Keep the muted ink for secondary notes; pages read thin and unfinished when everything is grey.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "FAIL",
+   "id": "small-text",
+   "width": 1440,
+   "message": "30 text blocks under 13px.",
+   "fix": "Nothing meant to be read goes below 13px.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "ragged-edges",
+   "width": 1440,
+   "message": "Left-aligned text starts at 12 different lines (84px, 56px, 768px, 130px, 812px, 426px, 736px); the three most used hold only 40% of it.",
+   "fix": "Pick two or three anchor lines from the grid and start every heading and paragraph on one of them.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Only 0 element(s) moved while the page loaded and scrolled.",
+   "fix": "Build the motion layer (SKILL.md step 9, references/motion.md): the signature move, an entrance for the parts of every section, feedback on every control, and one moving picture. Transform and opacity only, with a reduced-motion fallback."
+  },
+  {
+   "level": "FAIL",
+   "id": "headline-lines",
+   "width": 768,
+   "message": "1 headline(s) wrap past two lines at 768px: \"Comprehensive Mental Healthcare for Better Livin\" → 3 lines (6 words, 60px)",
+   "fix": "Cut words first (a headline is a title, not a sentence). Then give it a wider measure. Lower the size only as a last resort and never below the scale you chose. A real statement paragraph belongs in a <p> or <blockquote> at 32px or less."
+  },
+  {
+   "level": "FAIL",
+   "id": "headline-lines",
+   "width": 390,
+   "message": "2 headline(s) wrap past two lines at 390px: \"Comprehensive Mental Healthcare for Better Livin\" → 3 lines (6 words, 30px); \"Take the First Step Towards Better Mental Health\" → 3 lines (8 words, 24px)",
+   "fix": "Cut words first (a headline is a title, not a sentence). Then give it a wider measure. Lower the size only as a last resort and never below the scale you chose. A real statement paragraph belongs in a <p> or <blockquote> at 24px or less."
+  },
+  {
+   "level": "FAIL",
+   "id": "micro-label",
+   "width": 390,
+   "message": "9 tiny uppercase letter-spaced labels (e.g. \"Supporting individuals and families thro\", \"Comprehensive Psychiatric Care and Psych\", \"Support for a range of mental health con\", \"Structured support for daily functioning\").",
+   "fix": "Use sentence-case text at a readable size, or delete the label."
+  },
+  {
+   "level": "FAIL",
+   "id": "body-size",
+   "width": 390,
+   "message": "Body text is 14px (the size most of the running text is set in).",
+   "fix": "Body copy 16–20px. Map small sizes from blueprints onto your body step."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "D:\\Savelix-FDKode\\.taste-skill\\after-redesign\\desktop-fold.jpg",
+   "pages": [
+    "D:\\Savelix-FDKode\\.taste-skill\\after-redesign\\desktop-page-01.jpg",
+    "D:\\Savelix-FDKode\\.taste-skill\\after-redesign\\desktop-page-02.jpg",
+    "D:\\Savelix-FDKode\\.taste-skill\\after-redesign\\desktop-page-03.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "D:\\Savelix-FDKode\\.taste-skill\\after-redesign\\tablet-fold.jpg",
+   "pages": [
+    "D:\\Savelix-FDKode\\.taste-skill\\after-redesign\\tablet-page-01.jpg",
+    "D:\\Savelix-FDKode\\.taste-skill\\after-redesign\\tablet-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "D:\\Savelix-FDKode\\.taste-skill\\after-redesign\\mobile-fold.jpg",
+   "pages": [
+    "D:\\Savelix-FDKode\\.taste-skill\\after-redesign\\mobile-page-01.jpg",
+    "D:\\Savelix-FDKode\\.taste-skill\\after-redesign\\mobile-page-02.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

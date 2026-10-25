@@ -75,6 +75,17 @@
   }
 }
 
+@keyframes enterReveal {
+  from {
+    opacity: 0.85;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-fadeIn {
   animation: fadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -83,17 +94,29 @@
   animation: slideInRight 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+.animate-reveal {
+  animation: enterReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   body {
     background-color: var(--color-bg-main);
     color: var(--color-heading);
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  #root {
+    overflow-x: hidden;
+    width: 100%;
     min-height: 100vh;
   }
 
@@ -112,4 +135,164 @@
     }
   }
 }
+
+@layer utilities {
+  .savelix-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1rem, 2.5vw, 4rem);
+    padding-right: clamp(1rem, 2.5vw, 4rem);
+    max-width: 1280px;
+  }
+
+  @media (min-width: 1440px) {
+    .savelix-container {
+      max-width: 1400px;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .savelix-container {
+      max-width: 1760px;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .savelix-container {
+      max-width: 2240px;
+    }
+  }
+
+  @media (min-width: 3840px) {
+    .savelix-container {
+      max-width: 2680px;
+    }
+  }
+
+  .savelix-hero-frame {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1320px;
+  }
+
+  @media (min-width: 1440px) {
+    .savelix-hero-frame {
+      max-width: 1440px;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .savelix-hero-frame {
+      max-width: 1800px;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .savelix-hero-frame {
+      max-width: 2320px;
+    }
+  }
+
+  @media (min-width: 3840px) {
+    .savelix-hero-frame {
+      max-width: 2760px;
+    }
+  }
+
+  .scrim-white-fade {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.45) 28%, rgba(255, 255, 255, 0.88) 60%, #FFFFFF 100%);
+  }
+
+  .scrim-dark-fade {
+    background: linear-gradient(180deg, rgba(48, 43, 80, 0.75) 0%, rgba(48, 43, 80, 0.88) 50%, rgba(48, 43, 80, 0.96) 100%);
+  }
+
+  .scrim-hero-full {
+    background: linear-gradient(
+      180deg,
+      rgba(14, 13, 18, 0.65) 0%,
+      rgba(14, 13, 18, 0.36) 24%,
+      rgba(14, 13, 18, 0.40) 68%,
+      rgba(14, 13, 18, 0.78) 100%
+    );
+  }
+
+  @media (max-width: 639px) {
+    .scrim-hero-full {
+      background: linear-gradient(
+        180deg,
+        rgba(14, 13, 18, 0.70) 0%,
+        rgba(14, 13, 18, 0.38) 22%,
+        rgba(14, 13, 18, 0.44) 66%,
+        rgba(14, 13, 18, 0.82) 100%
+      );
+    }
+  }
+
+  /* Full-width Inner Page Hero Scrim: Seamless white/lavender fade */
+  /* Mobile (0px - 767px): Vertical fade preserving top 30% photo visibility while giving full contrast to text below */
+  .scrim-inner-hero {
+    background: linear-gradient(
+      180deg,
+      rgba(247, 243, 250, 0.08) 0%,
+      rgba(247, 243, 250, 0.28) 22%,
+      rgba(247, 243, 250, 0.78) 46%,
+      rgba(247, 243, 250, 0.96) 66%,
+      #F7F3FA 100%
+    );
+  }
+
+  /* Tablet (768px - 1023px): Smooth left-to-right fade tailored to tablet width */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .scrim-inner-hero {
+      background: linear-gradient(
+        90deg,
+        #FFFFFF 0px,
+        #F7F3FA 240px,
+        rgba(247, 243, 250, 0.96) 420px,
+        rgba(247, 243, 250, 0.75) 560px,
+        rgba(247, 243, 250, 0.22) 700px,
+        rgba(247, 243, 250, 0) 768px
+      );
+    }
+  }
+
+  /* Desktop and Ultrawide (1024px+): Solid backing behind text column, smoothly feathering to 100% transparent by 1150px so photo remains vibrant and unhazed across 1440px, 1920px, 2560px and 3840px */
+  @media (min-width: 1024px) {
+    .scrim-inner-hero {
+      background: linear-gradient(
+        90deg,
+        #FFFFFF 0px,
+        #F7F3FA 350px,
+        rgba(247, 243, 250, 0.96) 520px,
+        rgba(247, 243, 250, 0.72) 720px,
+        rgba(247, 243, 250, 0.22) 960px,
+        rgba(247, 243, 250, 0) 1150px
+      );
+    }
+  }
+
+  /* Responsive inner hero container min-height scaling for ultrawide screens */
+  @media (min-width: 2560px) {
+    .savelix-inner-hero {
+      min-height: 680px;
+    }
+  }
+
+  @media (min-width: 3840px) {
+    .savelix-inner-hero {
+      min-height: 800px;
+    }
+  }
+
+  /* SAVELIX Signature Visual Language Decor Utilities */
+  .savelix-decor {
+    pointer-events: none;
+    user-select: none;
+    will-change: transform, opacity;
+  }
+}
+
 

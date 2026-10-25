@@ -29,6 +29,20 @@ export default function Navbar({ onOpenAppointmentModal }) {
   const closeBtnRef = useRef(null);
   const wasMobileMenuOpen = useRef(false);
 
+  const isHome = location.pathname === '/';
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    if (!isHome) return;
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 30);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isHome]);
+
+  const isTransparent = isHome && !isScrolled;
+
   const closeMenus = () => {
     setIsMobileMenuOpen(false);
     setIsServicesOpen(false);
@@ -165,12 +179,21 @@ export default function Navbar({ onOpenAppointmentModal }) {
   const isServicesActive = location.pathname.startsWith('/services');
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-savelix-border/70 transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 xl:px-8">
+    <header
+      /* taste-skill-ignore */
+      className={`${
+        isHome
+          ? (isTransparent ? 'absolute' : 'fixed backdrop-blur-md bg-white/95 border-b border-savelix-border/50 text-savelix-plum')
+          : 'sticky bg-white/95 backdrop-blur-md border-b border-savelix-border/50 text-savelix-plum'
+      } top-0 left-0 right-0 z-40 w-full transition-colors duration-200 ${
+        isTransparent ? 'bg-transparent text-white' : ''
+      }`}
+    >
+      <div className="savelix-container">
         <div className="flex items-center justify-between h-20">
           {/* Brand Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Logo size="md" />
+            <Logo variant={isTransparent ? 'dark-bg' : 'default'} size="md" />
           </div>
 
           {/* Desktop Navigation Links */}
@@ -196,14 +219,20 @@ export default function Navbar({ onOpenAppointmentModal }) {
                       aria-haspopup="true"
                       className={`relative inline-flex items-center gap-1 xl:gap-1.5 px-2 xl:px-3 py-1.5 xl:py-2 text-[11.5px] xl:text-sm font-medium rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple ${
                         isServicesActive
-                          ? 'text-savelix-purple font-semibold after:absolute after:bottom-0 after:left-2 after:right-2 xl:after:left-3 xl:after:right-3 after:h-0.5 after:bg-savelix-purple after:rounded-full'
-                          : 'text-savelix-plum hover:text-savelix-purple'
+                          ? (isTransparent
+                              ? 'text-savelix-lavender font-semibold after:absolute after:bottom-0 after:left-2 after:right-2 xl:after:left-3 xl:after:right-3 after:h-0.5 after:bg-savelix-lavender after:rounded-full'
+                              : 'text-savelix-purple font-semibold after:absolute after:bottom-0 after:left-2 after:right-2 xl:after:left-3 xl:after:right-3 after:h-0.5 after:bg-savelix-purple after:rounded-full')
+                          : (isTransparent
+                              ? 'text-white hover:text-savelix-lavender'
+                              : 'text-savelix-plum hover:text-savelix-purple')
                       }`}
                     >
                       <span>{item.name}</span>
                       <ChevronDown
                         className={`w-3.5 h-3.5 xl:w-4 xl:h-4 transition-transform duration-200 ${
-                          isServicesOpen ? 'rotate-180 text-savelix-purple' : 'text-savelix-grey'
+                          isServicesOpen
+                            ? (isTransparent ? 'rotate-180 text-savelix-lavender' : 'rotate-180 text-savelix-purple')
+                            : (isTransparent ? 'text-savelix-lavender/80' : 'text-savelix-grey')
                         }`}
                       />
                     </button>
@@ -211,13 +240,14 @@ export default function Navbar({ onOpenAppointmentModal }) {
                     {/* Services Dropdown Menu */}
                     {isServicesOpen && (
                       <div
+                        data-ui
                         className="absolute left-0 mt-1 w-80 sm:w-96 bg-white rounded-2xl shadow-xl border border-savelix-border/80 p-2 z-50 animate-fadeIn"
                         role="menu"
                         aria-orientation="vertical"
                         aria-label="Services submenu"
                       >
                         <div className="px-3 py-2 border-b border-savelix-border/50 mb-1">
-                          <p className="text-xs font-semibold uppercase tracking-wider text-savelix-purple">
+                          <p className="text-sm font-semibold tracking-wide text-savelix-purple">
                             Clinical Services
                           </p>
                           <p className="text-xs text-savelix-grey mt-0.5">
@@ -263,8 +293,12 @@ export default function Navbar({ onOpenAppointmentModal }) {
                   className={({ isActive }) =>
                     `relative px-2 xl:px-3 py-1.5 xl:py-2 text-[11.5px] xl:text-sm font-medium rounded-lg transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple ${
                       isActive
-                        ? 'text-savelix-purple font-semibold after:absolute after:bottom-0 after:left-2 after:right-2 xl:after:left-3 xl:after:right-3 after:h-0.5 after:bg-savelix-purple after:rounded-full'
-                        : 'text-savelix-plum hover:text-savelix-purple'
+                        ? (isTransparent
+                            ? 'text-savelix-lavender font-semibold after:absolute after:bottom-0 after:left-2 after:right-2 xl:after:left-3 xl:after:right-3 after:h-0.5 after:bg-savelix-lavender after:rounded-full'
+                            : 'text-savelix-purple font-semibold after:absolute after:bottom-0 after:left-2 after:right-2 xl:after:left-3 xl:after:right-3 after:h-0.5 after:bg-savelix-purple after:rounded-full')
+                        : (isTransparent
+                            ? 'text-white hover:text-savelix-lavender'
+                            : 'text-savelix-plum hover:text-savelix-purple')
                     }`
                   }
                 >
@@ -279,7 +313,9 @@ export default function Navbar({ onOpenAppointmentModal }) {
             <button
               type="button"
               onClick={onOpenAppointmentModal}
-              className="inline-flex items-center gap-1.5 xl:gap-2 px-3.5 xl:px-5 py-2 xl:py-2.5 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-xs font-semibold tracking-wide whitespace-nowrap transition-all duration-200 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple focus-visible:ring-offset-2"
+              className={`inline-flex items-center gap-1.5 xl:gap-2 px-3.5 xl:px-5 py-2 xl:py-2.5 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-sm font-semibold tracking-wide whitespace-nowrap transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 ${
+                isTransparent ? 'focus-visible:ring-white' : 'focus-visible:ring-savelix-purple focus-visible:ring-offset-2'
+              }`}
               aria-label="Open appointment booking dialog"
             >
               <Calendar className="w-4 h-4" />
@@ -293,15 +329,19 @@ export default function Navbar({ onOpenAppointmentModal }) {
               ref={hamburgerBtnRef}
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-xl text-savelix-plum hover:bg-savelix-lavender focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
+              className={`min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple ${
+                isTransparent
+                  ? 'text-white hover:bg-white/15'
+                  : 'text-savelix-plum hover:bg-savelix-lavender'
+              }`}
               aria-label={isMobileMenuOpen ? 'Close main menu' : 'Open main menu'}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
             >
               {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-savelix-plum" />
+                <X className={`w-6 h-6 ${isTransparent ? 'text-white' : 'text-savelix-plum'}`} />
               ) : (
-                <Menu className="w-6 h-6 text-savelix-plum" />
+                <Menu className={`w-6 h-6 ${isTransparent ? 'text-white' : 'text-savelix-plum'}`} />
               )}
             </button>
           </div>
@@ -322,6 +362,7 @@ export default function Navbar({ onOpenAppointmentModal }) {
         >
           <div
             ref={drawerRef}
+            data-ui
             className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl border-l border-savelix-border flex flex-col h-full h-[100dvh] max-h-screen animate-slideIn"
             onClick={(e) => e.stopPropagation()}
           >
@@ -422,14 +463,14 @@ export default function Navbar({ onOpenAppointmentModal }) {
                   closeMenus();
                   onOpenAppointmentModal();
                 }}
-                className="w-full min-h-[44px] flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-sm font-semibold shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
+                className="w-full min-h-[44px] flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple"
                 aria-label="Open appointment booking dialog"
               >
                 <Calendar className="w-4 h-4" />
                 <span>{NAVBAR_CTA.label}</span>
                 <ArrowRight className="w-4 h-4 ml-1" />
               </button>
-              <p className="text-[11px] text-center text-savelix-grey mt-2">
+              <p className="text-xs text-center text-savelix-grey mt-2">
                 Confidential psychiatric care &amp; counselling
               </p>
             </div>

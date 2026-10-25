@@ -1,14 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Home } from 'lucide-react';
+import DecorBotanical from '../components/ui/decor/DecorBotanical';
 
 /**
  * SAVELIX 404 Not Found Page
  */
 export default function NotFound() {
   return (
-    <div className="py-20 px-4 sm:px-6 lg:px-8 max-w-xl mx-auto text-center">
-      <div className="bg-white border border-savelix-border rounded-2xl p-8 sm:p-12 shadow-sm">
+    <div className="py-20 px-4 sm:px-6 lg:px-8 max-w-xl mx-auto text-center relative overflow-hidden">
+      <DecorBotanical
+        variant="left"
+        className="pointer-events-none -top-10 -left-10 w-44 sm:w-56 text-savelix-purple/15"
+      />
+      <div className="bg-white border border-savelix-border rounded-2xl p-8 sm:p-12 shadow-sm relative z-10">
         <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-savelix-lavender text-savelix-purple mb-4">
           404 Error
         </span>

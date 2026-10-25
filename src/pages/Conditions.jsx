@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
-import BackButton from '../components/common/BackButton';
 import { Calendar, ArrowRight } from 'lucide-react';
+import PageHero from '../components/layout/PageHero';
+import DecorFlow from '../components/ui/decor/DecorFlow';
+import DecorOrbits from '../components/ui/decor/DecorOrbits';
+import DecorBranching from '../components/ui/decor/DecorBranching';
 
 /**
  * PAGE C — CONDITIONS WE SUPPORT
@@ -57,76 +60,53 @@ export default function Conditions() {
 
   return (
     <div className="w-full bg-savelix-lilac min-h-[100dvh] text-savelix-plum">
-      {/* Top Utility Bar: Smart Back & Breadcrumbs */}
-      <div className="bg-white/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <BackButton fallback="/" />
-              <nav aria-label="Breadcrumb">
-                <ol className="flex items-center space-x-2 text-sm text-savelix-plum/70">
-                  <li>
-                    <Link to="/" className="hover:text-savelix-purple transition-colors focus-visible:underline">
-                      Home
-                    </Link>
-                  </li>
-                  <li aria-hidden="true" className="text-savelix-plum/40">/</li>
-                  <li className="text-savelix-plum font-semibold" aria-current="page">
-                    Conditions We Support
-                  </li>
-                </ol>
-              </nav>
-            </div>
-            <span className="text-sm font-semibold text-savelix-purple hidden md:inline-block">
-              Clinical Assessment &amp; Diagnosis
-            </span>
-          </div>
-        </div>
-      </div>
 
-      {/* Editorial Hero */}
-      <section className="py-16 sm:py-24 lg:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-6 sm:space-y-8">
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-savelix-plum tracking-tight leading-[1.08]">
-              Conditions <span className="font-serif italic font-normal text-savelix-purple">We Support</span>
-            </h1>
-
-            <p className="text-xl sm:text-2xl font-bold text-savelix-purple tracking-tight">
-              Support for a range of mental health concerns
-            </p>
-
-            <p className="text-lg sm:text-xl text-savelix-plum font-normal leading-relaxed max-w-[62ch]">
-              Mental health difficulties can affect thoughts, emotions, behaviour, relationships, education, employment and everyday activities. Care considers the whole person rather than focusing only on symptoms.
-            </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-4">
-              {onOpenAppointmentModal && (
-                <button
-                  type="button"
-                  onClick={onOpenAppointmentModal}
-                  className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-base font-semibold tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple cursor-pointer min-h-[48px]"
-                >
-                  <Calendar className="w-5 h-5 text-white" />
-                  <span>Book an Appointment</span>
-                  <ArrowRight className="w-4 h-4 text-white transition-transform group-hover:translate-x-1" />
-                </button>
-              )}
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white hover:bg-savelix-lavender text-savelix-plum text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple min-h-[48px]"
+      {/* Full-Width Image-Led Editorial Hero */}
+      <PageHero
+        title={
+          <>
+            Conditions <span className="font-serif italic font-normal text-savelix-purple">We Support</span>
+          </>
+        }
+        subtitle="Support for a range of mental health concerns"
+        description="Mental health difficulties can affect thoughts, emotions, behaviour, relationships, education, employment and everyday activities. Care considers the whole person rather than focusing only on symptoms."
+        image={`${import.meta.env.BASE_URL}assets/heroes/conditions.jpg`}
+        imageAlt="Savelix Compassionate Clinical Care Environment"
+        imagePosition="object-[right_20%] lg:object-[right_15%]"
+        actions={
+          <>
+            {onOpenAppointmentModal && (
+              <button
+                type="button"
+                onClick={onOpenAppointmentModal}
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-base font-semibold tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple cursor-pointer min-h-[48px]"
               >
-                <span>Explore Our Services</span>
-                <ArrowRight className="w-4 h-4 text-savelix-purple" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+                <Calendar className="w-5 h-5 text-white" />
+                <span>Book an Appointment</span>
+                <ArrowRight className="w-4 h-4 text-white transition-transform group-hover:translate-x-1" />
+              </button>
+            )}
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white hover:bg-savelix-lavender text-savelix-plum text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple min-h-[48px]"
+            >
+              <span>Explore Our Services</span>
+              <ArrowRight className="w-4 h-4 text-savelix-purple" />
+            </Link>
+          </>
+        }
+      />
 
       {/* Clinical Conditions Directory: Open Two-Column Taxonomy Stream */}
-      <section className="py-20 sm:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
+        {/* Background SVG Flow Decoration (Section 1: Left Outer Corner) */}
+        <DecorFlow
+          variant="left"
+          className="top-8 left-0 sm:top-14 sm:left-0 lg:top-16 lg:left-0"
+          opacity="opacity-45 sm:opacity-60 lg:opacity-75"
+          size="w-44 sm:w-60 lg:w-80 xl:w-[420px] h-auto"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mb-16 sm:mb-20 space-y-3">
             <h2 className="text-3xl sm:text-5xl font-extrabold text-savelix-plum tracking-tight">
               Supported <span className="font-serif italic font-normal text-savelix-purple">Clinical Areas</span>
@@ -162,8 +142,15 @@ export default function Conditions() {
       </section>
 
       {/* Care Continuum: Deep Plum Grounding Section */}
-      <section className="py-20 sm:py-28 bg-savelix-plum text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-savelix-plum text-white relative overflow-hidden">
+        {/* Background SVG Orbits Decoration (Section 2: Right Outer Corner) */}
+        <DecorOrbits
+          variant="right"
+          className="top-4 right-0 sm:top-8 sm:right-0 lg:top-10 lg:right-0"
+          opacity="opacity-15 sm:opacity-20 lg:opacity-25"
+          size="w-48 sm:w-64 lg:w-80 xl:w-96 h-auto"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl space-y-4">
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
               A Comprehensive Approach to <span className="font-serif italic font-normal text-savelix-lavender">Mental Healthcare</span>
@@ -176,8 +163,15 @@ export default function Conditions() {
       </section>
 
       {/* Closing Care Invitation: Tailored & Restrained */}
-      <section className="py-20 sm:py-28 bg-savelix-lavender">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-savelix-lavender relative overflow-hidden">
+        {/* Background SVG Branching Decoration (Section 3: Left Outer Corner) */}
+        <DecorBranching
+          variant="left"
+          className="top-4 left-0 sm:top-6 sm:left-0 lg:top-8 lg:left-0"
+          opacity="opacity-40 sm:opacity-55 lg:opacity-75"
+          size="w-40 sm:w-56 lg:w-72 xl:w-84 h-auto"
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
             <div className="space-y-4 max-w-2xl">
               <h2 className="text-3xl sm:text-5xl font-extrabold text-savelix-plum tracking-tight leading-tight">
