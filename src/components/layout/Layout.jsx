@@ -16,8 +16,7 @@ import { useSmoothScroll } from '../../hooks/useSmoothScroll';
  * - Page content container (Outlet)
  * - Branded clinical Footer
  * - Accessible Appointment / Enquiry Modal
- * - Automatic Scroll-to-Top on route change
- * - Lenis Smooth Scrolling Engine synchronized with GSAP ScrollTrigger
+ * - Native Smooth Scrolling Coordination synchronized with GSAP ScrollTrigger
  */
 export default function Layout() {
   return (

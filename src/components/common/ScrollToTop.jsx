@@ -8,7 +8,7 @@ import { ScrollTrigger } from '../../lib/gsap';
  * ScrollToTop & Navigation Tracker
  *
  * Automatically scrolls window to top on route change,
- * resets Lenis smooth scroll offset immediately,
+ * resets scroll offset immediately,
  * and refreshes GSAP ScrollTrigger measurements.
  */
 export default function ScrollToTop() {

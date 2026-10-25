@@ -42,8 +42,10 @@ coverage
 *.cert
 *.crt
 
-# Temporary files
+# Temporary files and scratch outputs
 Thumbs.db
 *.tmp
 *.temp
+.taste-skill/
+scratch/
 
