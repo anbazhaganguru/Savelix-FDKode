@@ -5,10 +5,9 @@ import { Link } from 'react-router-dom';
  * Official SAVELIX Brand Lockup Component
  *
  * Implements:
- * - [ SAVELIX SYMBOL IMAGE ] [ SAVELIX WORDMARK AS LIVE TEXT ]
+ * - [ SAVELIX SYMBOL IMAGE ] [ SAVELIX WORDMARK IMAGE ]
  * - Symbol: High-resolution circular emblem with healing tree, medical cross & supporting hand
- * - Wordmark: Accessible, live text in geometric modern letterforms (Outfit 800) with smooth gradient
- *   transitioning from Deep Royal Purple (#3E227E) through Indigo, Azure Blue, Teal to Vivid Green (#5BB92E)
+ * - Wordmark: Official SAVELIX brand wordmark asset with original colors, lettering, and gradient
  * - Refined light pill backing when displayed over dark backgrounds (hero / footer)
  * - Seamless integration directly on light surfaces (sticky white navbar / mobile drawer)
  * - Proportional responsive sizing preventing header collisions
@@ -23,25 +22,25 @@ export default function Logo({
   const sizes = {
     sm: {
       symbol: 'h-7 sm:h-7.5 w-auto',
-      text: 'text-lg sm:text-xl tracking-[0.05em]',
+      wordmark: 'h-[16px] sm:h-[18px] w-auto',
       pill: 'px-3 py-1.5 gap-2',
       gap: 'gap-2',
     },
     md: {
       symbol: 'h-8 sm:h-8.5 md:h-9 w-auto',
-      text: 'text-[20px] sm:text-[22px] md:text-[24px] tracking-[0.06em]',
+      wordmark: 'h-[19px] sm:h-[21px] md:h-[23px] w-auto',
       pill: 'px-3 sm:px-3.5 py-1.5 sm:py-2 gap-2.5 sm:gap-3',
       gap: 'gap-2.5 sm:gap-3',
     },
     lg: {
       symbol: 'h-10 sm:h-11 w-auto',
-      text: 'text-2xl sm:text-3xl tracking-[0.06em]',
+      wordmark: 'h-[24px] sm:h-[28px] w-auto',
       pill: 'px-4 py-2.5 gap-3.5',
       gap: 'gap-3.5',
     },
   }[size] || {
     symbol: 'h-8 sm:h-8.5 md:h-9 w-auto',
-    text: 'text-[20px] sm:text-[22px] md:text-[24px] tracking-[0.06em]',
+    wordmark: 'h-[19px] sm:h-[21px] md:h-[23px] w-auto',
     pill: 'px-3 sm:px-3.5 py-1.5 sm:py-2 gap-2.5 sm:gap-3',
     gap: 'gap-2.5 sm:gap-3',
   };
@@ -59,18 +58,15 @@ export default function Logo({
   );
 
   const wordmarkElement = (
-    <span
-      className={`font-outfit font-extrabold uppercase leading-none select-none inline-block ${sizes.text}`}
-      style={{
-        background: 'linear-gradient(90deg, #4A297F 0%, #3F297A 35%, #2B3D8F 45%, #1866AE 55%, #1282B7 70%, #169B73 82%, #68B92E 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        backgroundClip: 'text',
-      }}
-      aria-hidden="true"
-    >
-      SAVELIX
-    </span>
+    <img
+      src={`${import.meta.env.BASE_URL}assets/savelix-wordmark.png`}
+      alt="SAVELIX"
+      className={`${sizes.wordmark} object-contain flex-shrink-0 select-none`}
+      width={927}
+      height={173}
+      loading="eager"
+      decoding="async"
+    />
   );
 
   // Background treatment:
