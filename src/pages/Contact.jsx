@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import {
   Calendar,
@@ -7,10 +7,16 @@ import {
   AlertCircle,
   CheckCircle2,
   ArrowRight,
+  Loader2
 } from 'lucide-react';
 import PageHero from '../components/layout/PageHero';
 import DecorFlow from '../components/ui/decor/DecorFlow';
 import DecorBotanical from '../components/ui/decor/DecorBotanical';
+import {
+  submitLeadToApi,
+  parseAndNormalizeContact,
+  generateIdempotencyKey
+} from '../services/leadSubmission';
 
 /**
  * SECTION 02 & PAGE 14 — CONTACT US
@@ -25,16 +31,106 @@ import DecorBotanical from '../components/ui/decor/DecorBotanical';
 export default function Contact() {
   const { onOpenAppointmentModal } = useOutletContext() || {};
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [referenceCode, setReferenceCode] = useState('');
+  const [serverError, setServerError] = useState(null);
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
+
+  const idempotencyKeyRef = useRef(generateIdempotencyKey());
+
   const [formData, setFormData] = useState({
     name: '',
     contact: '',
     serviceInterest: 'Psychiatric Care',
+    customService: '',
     message: '',
+    hp_clinical_validation: ''
   });
 
-  const handleSubmit = (e) => {
+  const validateField = (name, value) => {
+    if (name === 'name') {
+      if (!value.trim()) return 'Please enter your full name.';
+      if (value.trim().length < 2) return 'Name should be at least 2 characters.';
+    }
+    if (name === 'contact') {
+      if (!value.trim()) return 'Please enter your contact phone number (e.g., +91 98765 43210).';
+      const parsed = parseAndNormalizeContact(value);
+      if (parsed.error) return parsed.error;
+    }
+    if (name === 'customService' && formData.serviceInterest === 'Other / Custom Enquiry') {
+      if (!value.trim()) return 'Please provide a brief description of your custom enquiry.';
+    }
+    return '';
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (serverError) setServerError(null);
+
+    if (touched[name]) {
+      const err = validateField(name, value);
+      setErrors((prev) => ({ ...prev, [name]: err }));
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+    const err = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: err }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    const nameErr = validateField('name', formData.name);
+    const contactErr = validateField('contact', formData.contact);
+    const customErr = formData.serviceInterest === 'Other / Custom Enquiry'
+      ? validateField('customService', formData.customService)
+      : '';
+
+    if (nameErr || contactErr || customErr) {
+      setErrors({
+        name: nameErr,
+        contact: contactErr,
+        ...(customErr ? { customService: customErr } : {})
+      });
+      setTouched({
+        name: true,
+        contact: true,
+        ...(formData.serviceInterest === 'Other / Custom Enquiry' ? { customService: true } : {})
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setServerError(null);
+
+    try {
+      const result = await submitLeadToApi({
+        fullName: formData.name,
+        contactInfo: formData.contact,
+        service: formData.serviceInterest,
+        customService: formData.customService,
+        notes: formData.message,
+        source: 'contact_page',
+        honeypot: formData.hp_clinical_validation,
+        idempotencyKey: idempotencyKeyRef.current
+      });
+
+      if (result.success) {
+        setReferenceCode(result.referenceCode || '');
+        setFormSubmitted(true);
+        idempotencyKeyRef.current = generateIdempotencyKey();
+      } else {
+        setServerError(result.message || 'Unable to submit your enquiry. Please verify your details and try again.');
+      }
+    } catch {
+      setServerError('A network error occurred. Please verify your internet connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const serviceOptions = [
@@ -46,6 +142,7 @@ export default function Contact() {
     'Child & Adolescent Counselling',
     'Inpatient Environment & Safety Monitoring',
     'Education & Internship Enquiry',
+    'Other / Custom Enquiry'
   ];
 
   const locationPhrases = [
@@ -181,68 +278,136 @@ export default function Contact() {
                 </p>
               </div>
 
+              {/* Server Alert Banner */}
+              {serverError && (
+                <div
+                  className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-sm flex items-start gap-3 animate-fadeIn"
+                  role="alert"
+                >
+                  <AlertCircle className="w-5 h-5 text-rose-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                  <span className="leading-relaxed">{serverError}</span>
+                </div>
+              )}
+
               {formSubmitted ? (
-                <div className="p-8 sm:p-10 rounded-[24px] bg-white space-y-5">
+                <div className="p-8 sm:p-10 rounded-[24px] bg-white space-y-5 animate-fadeIn">
                   <div className="w-12 h-12 rounded-full bg-savelix-lavender text-savelix-purple flex items-center justify-center">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <h3 className="text-2xl font-bold text-savelix-plum">
                     Enquiry Received
                   </h3>
+
+                  {referenceCode && (
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-savelix-lavender border border-savelix-border/80 text-sm font-mono font-bold text-savelix-plum">
+                      <span className="text-savelix-purple font-semibold uppercase tracking-wider text-xs">Reference:</span>
+                      <span className="select-all">{referenceCode}</span>
+                    </div>
+                  )}
+
                   <p className="text-base sm:text-lg text-savelix-plum/90 leading-relaxed">
-                    Thank you, {formData.name || 'Visitor'}. Your consultation enquiry for {formData.serviceInterest} has been recorded. Our team will review your message confidentially.
+                    Thank you, <strong className="font-bold">{formData.name || 'Visitor'}</strong>. Your consultation enquiry for <strong className="font-bold">{formData.serviceInterest}</strong> has been securely recorded. Our clinical coordinator will review your message confidentially.
                   </p>
                   <button
                     type="button"
                     onClick={() => {
                       setFormSubmitted(false);
+                      setReferenceCode('');
+                      setServerError(null);
                       setFormData({
                         name: '',
                         contact: '',
                         serviceInterest: 'Psychiatric Care',
+                        customService: '',
                         message: '',
+                        hp_clinical_validation: ''
                       });
+                      idempotencyKeyRef.current = generateIdempotencyKey();
                     }}
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-savelix-purple text-white text-base font-semibold hover:bg-savelix-purple-hover transition-colors min-h-[48px]"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-savelix-purple text-white text-base font-semibold hover:bg-savelix-purple-hover transition-colors min-h-[48px] cursor-pointer"
                   >
                     <span>Submit Another Enquiry</span>
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="contact-name"
-                      className="block text-base font-bold text-savelix-plum"
-                    >
-                      Full Name
-                    </label>
+                <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                  {/* Invisible Honeypot Field */}
+                  <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+                    <label htmlFor="contact-hp">Leave this field blank</label>
                     <input
-                      id="contact-name"
+                      id="contact-hp"
+                      name="hp_clinical_validation"
                       type="text"
-                      required
-                      placeholder="Enter your name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-5 py-4 rounded-2xl bg-white text-savelix-plum text-base placeholder:text-savelix-grey focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple min-h-[48px]"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formData.hp_clinical_validation}
+                      onChange={handleInputChange}
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label
-                      htmlFor="contact-detail"
-                      className="block text-base font-bold text-savelix-plum"
-                    >
-                      Contact Number or Email
-                    </label>
+                    <div className="flex items-center justify-between">
+                      <label
+                        htmlFor="contact-name"
+                        className="block text-base font-bold text-savelix-plum"
+                      >
+                        Full Name <span className="text-rose-500 font-bold ml-0.5" aria-hidden="true">*</span>
+                      </label>
+                      {touched.name && errors.name && (
+                        <span className="text-xs font-semibold text-rose-500" role="alert">
+                          {errors.name}
+                        </span>
+                      )}
+                    </div>
                     <input
-                      id="contact-detail"
+                      id="contact-name"
+                      name="name"
                       type="text"
                       required
-                      placeholder="phone@example.com or mobile number"
+                      placeholder="Enter your name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      onBlur={handleBlur}
+                      aria-required="true"
+                      aria-invalid={touched.name && !!errors.name}
+                      className={`w-full px-5 py-4 rounded-2xl bg-white text-savelix-plum text-base placeholder:text-savelix-grey focus-visible:outline-none focus-visible:ring-2 min-h-[48px] ${
+                        touched.name && errors.name
+                          ? 'border border-rose-400 focus-visible:ring-rose-400'
+                          : 'focus-visible:ring-savelix-purple'
+                      }`}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <label
+                        htmlFor="contact-detail"
+                        className="block text-base font-bold text-savelix-plum"
+                      >
+                        Contact Number or Email <span className="text-rose-500 font-bold ml-0.5" aria-hidden="true">*</span>
+                      </label>
+                      {touched.contact && errors.contact && (
+                        <span className="text-xs font-semibold text-rose-500" role="alert">
+                          {errors.contact}
+                        </span>
+                      )}
+                    </div>
+                    <input
+                      id="contact-detail"
+                      name="contact"
+                      type="text"
+                      required
+                      placeholder="e.g. +91 98765 43210 (or phone with email)"
                       value={formData.contact}
-                      onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
-                      className="w-full px-5 py-4 rounded-2xl bg-white text-savelix-plum text-base placeholder:text-savelix-grey focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple min-h-[48px]"
+                      onChange={handleInputChange}
+                      onBlur={handleBlur}
+                      aria-required="true"
+                      aria-invalid={touched.contact && !!errors.contact}
+                      className={`w-full px-5 py-4 rounded-2xl bg-white text-savelix-plum text-base placeholder:text-savelix-grey focus-visible:outline-none focus-visible:ring-2 min-h-[48px] ${
+                        touched.contact && errors.contact
+                          ? 'border border-rose-400 focus-visible:ring-rose-400'
+                          : 'focus-visible:ring-savelix-purple'
+                      }`}
                     />
                   </div>
 
@@ -255,9 +420,10 @@ export default function Contact() {
                     </label>
                     <select
                       id="contact-service"
+                      name="serviceInterest"
                       value={formData.serviceInterest}
-                      onChange={(e) => setFormData({ ...formData, serviceInterest: e.target.value })}
-                      className="w-full px-5 py-4 rounded-2xl bg-white text-savelix-plum text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple min-h-[48px]"
+                      onChange={handleInputChange}
+                      className="w-full px-5 py-4 rounded-2xl bg-white text-savelix-plum text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple min-h-[48px] cursor-pointer"
                     >
                       {serviceOptions.map((opt, idx) => (
                         <option key={idx} value={opt}>
@@ -266,6 +432,42 @@ export default function Contact() {
                       ))}
                     </select>
                   </div>
+
+                  {/* Custom Enquiry Description (when 'Other / Custom Enquiry' chosen) */}
+                  {formData.serviceInterest === 'Other / Custom Enquiry' && (
+                    <div className="space-y-2 animate-fadeIn">
+                      <div className="flex items-center justify-between">
+                        <label
+                          htmlFor="contact-custom-service"
+                          className="block text-base font-bold text-savelix-plum"
+                        >
+                          Custom Enquiry Description <span className="text-rose-500 font-bold ml-0.5" aria-hidden="true">*</span>
+                        </label>
+                        {touched.customService && errors.customService && (
+                          <span className="text-xs font-semibold text-rose-500" role="alert">
+                            {errors.customService}
+                          </span>
+                        )}
+                      </div>
+                      <input
+                        id="contact-custom-service"
+                        name="customService"
+                        type="text"
+                        required
+                        placeholder="Describe your custom enquiry or requirement..."
+                        value={formData.customService}
+                        onChange={handleInputChange}
+                        onBlur={handleBlur}
+                        aria-required="true"
+                        aria-invalid={touched.customService && !!errors.customService}
+                        className={`w-full px-5 py-4 rounded-2xl bg-white text-savelix-plum text-base placeholder:text-savelix-grey focus-visible:outline-none focus-visible:ring-2 min-h-[48px] ${
+                          touched.customService && errors.customService
+                            ? 'border border-rose-400 focus-visible:ring-rose-400'
+                            : 'focus-visible:ring-savelix-purple'
+                        }`}
+                      />
+                    </div>
+                  )}
 
                   <div className="space-y-2">
                     <label
@@ -276,20 +478,31 @@ export default function Contact() {
                     </label>
                     <textarea
                       id="contact-message"
+                      name="message"
                       rows={4}
                       placeholder="Please briefly describe your enquiry or preferred appointment timing..."
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={handleInputChange}
                       className="w-full px-5 py-4 rounded-2xl bg-white text-savelix-plum text-base placeholder:text-savelix-grey focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple resize-y min-h-[120px]"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple cursor-pointer min-h-[48px]"
+                    disabled={isSubmitting}
+                    className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-savelix-purple hover:bg-savelix-purple-hover text-white text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-savelix-purple cursor-pointer min-h-[48px] disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    <Send className="w-5 h-5" />
-                    <span>Send Confidential Enquiry</span>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin text-white" aria-hidden="true" />
+                        <span>Submitting Confidential Enquiry...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        <span>Send Confidential Enquiry</span>
+                      </>
+                    )}
                   </button>
                 </form>
               )}

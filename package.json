@@ -8,6 +8,7 @@
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
+    "test:leads": "node tests/verify-lead-submission.mjs",
     "test:motion": "node tests/verify-performance-and-reveals.mjs",
     "test:navbar": "node tests/verify-navbar-sticky.mjs"
   },

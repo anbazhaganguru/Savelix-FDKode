@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { X, CheckCircle2, Calendar, ArrowRight, ChevronDown, Loader2 } from 'lucide-react';
+import { X, CheckCircle2, Calendar, ArrowRight, ChevronDown, Loader2, AlertCircle } from 'lucide-react';
 import { SERVICES_NAV_ITEMS } from '../../config/navigation';
+import {
+  submitLeadToApi,
+  parseAndNormalizeContact,
+  generateIdempotencyKey
+} from '../../services/leadSubmission';
 
 /**
  * Premium Appointment & Enquiry Modal for SAVELIX
@@ -11,35 +16,45 @@ import { SERVICES_NAV_ITEMS } from '../../config/navigation';
  * - Crisp form controls with custom chevron, clear required indicators, and accessible focus rings
  * - Comprehensive accessibility: focus trapping, Escape key, backdrop dismiss, and focus restoration
  * - Controlled desktop width (480–490px) and seamless mobile responsive scrolling (touch targets >= 44px)
- * - Transparent request-receipt messaging without misleading fake booking confirmations
+ * - Transparent request-receipt messaging displaying the canonical CRM reference code
  */
 export default function AppointmentModal({ isOpen, onClose }) {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [referenceCode, setReferenceCode] = useState('');
+  const [serverError, setServerError] = useState(null);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [formData, setFormData] = useState({
     fullName: '',
     contactInfo: '',
     service: 'Psychiatric Care',
+    customService: '',
     notes: '',
+    hp_clinical_validation: ''
   });
 
   const modalRef = useRef(null);
   const firstInputRef = useRef(null);
   const previousActiveElement = useRef(null);
+  const idempotencyKeyRef = useRef(generateIdempotencyKey());
 
   const resetForm = useCallback(() => {
     setFormSubmitted(false);
     setIsSubmitting(false);
+    setReferenceCode('');
+    setServerError(null);
     setErrors({});
     setTouched({});
     setFormData({
       fullName: '',
       contactInfo: '',
       service: 'Psychiatric Care',
+      customService: '',
       notes: '',
+      hp_clinical_validation: ''
     });
+    idempotencyKeyRef.current = generateIdempotencyKey();
   }, []);
 
   const handleClose = useCallback(() => {
@@ -108,8 +123,12 @@ export default function AppointmentModal({ isOpen, onClose }) {
       if (value.trim().length < 2) return 'Name should be at least 2 characters.';
     }
     if (name === 'contactInfo') {
-      if (!value.trim()) return 'Please provide a valid phone number or email.';
-      if (value.trim().length < 5) return 'Please provide a valid contact method.';
+      if (!value.trim()) return 'Please provide a valid phone number (e.g. +91 98765 43210).';
+      const parsed = parseAndNormalizeContact(value);
+      if (parsed.error) return parsed.error;
+    }
+    if (name === 'customService' && formData.service === 'Other / Custom Enquiry') {
+      if (!value.trim()) return 'Please provide a brief description of your custom enquiry.';
     }
     return '';
   };
@@ -117,6 +136,8 @@ export default function AppointmentModal({ isOpen, onClose }) {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (serverError) setServerError(null);
 
     if (touched[name]) {
       const err = validateField(name, value);
@@ -131,14 +152,25 @@ export default function AppointmentModal({ isOpen, onClose }) {
     setErrors((prev) => ({ ...prev, [name]: err }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const nameErr = validateField('fullName', formData.fullName);
     const contactErr = validateField('contactInfo', formData.contactInfo);
+    const customErr = formData.service === 'Other / Custom Enquiry'
+      ? validateField('customService', formData.customService)
+      : '';
 
-    if (nameErr || contactErr) {
-      setErrors({ fullName: nameErr, contactInfo: contactErr });
-      setTouched({ fullName: true, contactInfo: true });
+    if (nameErr || contactErr || customErr) {
+      setErrors({
+        fullName: nameErr,
+        contactInfo: contactErr,
+        ...(customErr ? { customService: customErr } : {})
+      });
+      setTouched({
+        fullName: true,
+        contactInfo: true,
+        ...(formData.service === 'Other / Custom Enquiry' ? { customService: true } : {})
+      });
       if (nameErr && firstInputRef.current) {
         firstInputRef.current.focus();
       }
@@ -146,14 +178,38 @@ export default function AppointmentModal({ isOpen, onClose }) {
     }
 
     setIsSubmitting(true);
-    // Controlled async submission feedback preventing accidental duplicate submits
-    setTimeout(() => {
+    setServerError(null);
+
+    try {
+      const result = await submitLeadToApi({
+        fullName: formData.fullName,
+        contactInfo: formData.contactInfo,
+        service: formData.service,
+        customService: formData.customService,
+        notes: formData.notes,
+        source: 'modal_appointment',
+        honeypot: formData.hp_clinical_validation,
+        idempotencyKey: idempotencyKeyRef.current
+      });
+
+      if (result.success) {
+        setReferenceCode(result.referenceCode || '');
+        setFormSubmitted(true);
+        idempotencyKeyRef.current = generateIdempotencyKey();
+      } else {
+        setServerError(result.message || 'Unable to submit your appointment request. Please try again.');
+      }
+    } catch {
+      setServerError('A network error occurred. Please verify your connection and try again.');
+    } finally {
       setIsSubmitting(false);
-      setFormSubmitted(true);
-    }, 450);
+    }
   };
 
-  const clinicalServices = SERVICES_NAV_ITEMS.filter((item) => item.path !== '/services');
+  const clinicalServices = [
+    ...SERVICES_NAV_ITEMS.filter((item) => item.path !== '/services'),
+    { name: 'Other / Custom Enquiry', path: '/services/custom' }
+  ];
 
   return (
     <div
@@ -219,6 +275,14 @@ export default function AppointmentModal({ isOpen, onClose }) {
                 <h3 className="text-xl sm:text-2xl font-extrabold text-savelix-plum tracking-tight">
                   Appointment Request Received
                 </h3>
+
+                {referenceCode && (
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-savelix-lavender border border-savelix-border/80 text-xs font-mono font-bold text-savelix-plum">
+                    <span className="text-savelix-purple font-semibold uppercase tracking-wider text-[11px]">Reference:</span>
+                    <span className="select-all">{referenceCode}</span>
+                  </div>
+                )}
+
                 <p className="text-sm sm:text-base text-savelix-grey leading-relaxed max-w-sm mx-auto">
                   Thank you, <span className="font-semibold text-savelix-plum">{formData.fullName}</span>. Your consultation request for <span className="font-semibold text-savelix-plum">{formData.service}</span> has been securely noted.
                 </p>
@@ -257,7 +321,32 @@ export default function AppointmentModal({ isOpen, onClose }) {
                 Please share your preferred consultation details. All communications are confidential and handled in accordance with clinical care guidelines.
               </p>
 
+              {/* Server Alert Banner */}
+              {serverError && (
+                <div
+                  className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs sm:text-sm flex items-start gap-2.5 animate-fadeIn"
+                  role="alert"
+                >
+                  <AlertCircle className="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                  <span className="leading-relaxed">{serverError}</span>
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} noValidate className="space-y-4 text-left">
+                {/* Honeypot field (hidden from human visitors) */}
+                <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+                  <label htmlFor="hp_clinical_validation">Leave this field blank</label>
+                  <input
+                    id="hp_clinical_validation"
+                    name="hp_clinical_validation"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formData.hp_clinical_validation}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
                 {/* 1. Full Name (Required) */}
                 <div className="space-y-1.5">
                   <label
@@ -318,7 +407,7 @@ export default function AppointmentModal({ isOpen, onClose }) {
                     value={formData.contactInfo}
                     onChange={handleInputChange}
                     onBlur={handleBlur}
-                    placeholder="e.g. your phone or email"
+                    placeholder="e.g. +91 98765 43210 or phone with email"
                     aria-required="true"
                     aria-invalid={touched.contactInfo && !!errors.contactInfo}
                     className={`w-full px-3.5 py-2.5 sm:py-3 text-sm rounded-xl border bg-white text-savelix-plum placeholder:text-savelix-grey/50 transition-all duration-150 shadow-sm focus:outline-none focus:ring-2 min-h-[44px] ${
@@ -357,6 +446,42 @@ export default function AppointmentModal({ isOpen, onClose }) {
                     />
                   </div>
                 </div>
+
+                {/* 3b. Custom Service Description (Required when 'Other / Custom Enquiry' chosen) */}
+                {formData.service === 'Other / Custom Enquiry' && (
+                  <div className="space-y-1.5 animate-fadeIn">
+                    <label
+                      htmlFor="customService"
+                      className="flex items-center justify-between text-xs sm:text-sm font-semibold text-savelix-plum"
+                    >
+                      <span>
+                        Custom Enquiry Description <span className="text-rose-500 font-bold ml-0.5" aria-hidden="true">*</span>
+                      </span>
+                      {touched.customService && errors.customService && (
+                        <span className="text-xs font-medium text-rose-500" role="alert">
+                          {errors.customService}
+                        </span>
+                      )}
+                    </label>
+                    <input
+                      id="customService"
+                      name="customService"
+                      type="text"
+                      required
+                      value={formData.customService}
+                      onChange={handleInputChange}
+                      onBlur={handleBlur}
+                      placeholder="Briefly describe your enquiry or concern..."
+                      aria-required="true"
+                      aria-invalid={touched.customService && !!errors.customService}
+                      className={`w-full px-3.5 py-2.5 sm:py-3 text-sm rounded-xl border bg-white text-savelix-plum placeholder:text-savelix-grey/50 transition-all duration-150 shadow-sm focus:outline-none focus:ring-2 min-h-[44px] ${
+                        touched.customService && errors.customService
+                          ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-200'
+                          : 'border-savelix-border focus:border-savelix-purple focus:ring-savelix-purple/20'
+                      }`}
+                    />
+                  </div>
+                )}
 
                 {/* 4. Enquiry Note or Preferred Timing (Optional) */}
                 <div className="space-y-1.5">
