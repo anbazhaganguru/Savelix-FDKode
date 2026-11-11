@@ -18,8 +18,6 @@
  * 8. Honeypot bot trap (hp_clinical_validation) preserved.
  */
 
-import { getAttribution } from './attributionTracker.js';
-
 /**
  * Approved CRM Service Offering Enums (8 canonical offerings + custom enquiry aliases)
  */
@@ -285,11 +283,40 @@ export function generateIdempotencyKey() {
 
 /**
  * Extracts browser-side UTM marketing attribution and referrer safely.
- * Preserves campaign attribution across internal site navigation using sessionStorage.
  * @returns {object}
  */
 export function extractAttribution() {
-  return getAttribution();
+  const attribution = {
+    source_page: undefined,
+    referrer: undefined,
+    utm_source: undefined,
+    utm_medium: undefined,
+    utm_campaign: undefined,
+    utm_content: undefined,
+    utm_term: undefined
+  };
+
+  if (typeof window !== 'undefined') {
+    try {
+      attribution.source_page = window.location.pathname ? window.location.pathname.slice(0, 255) : undefined;
+      if (typeof document !== 'undefined' && document.referrer) {
+        attribution.referrer = document.referrer.slice(0, 500);
+      }
+      const search = window.location.search;
+      if (search) {
+        const params = new URLSearchParams(search);
+        attribution.utm_source = params.get('utm_source')?.slice(0, 100) || undefined;
+        attribution.utm_medium = params.get('utm_medium')?.slice(0, 100) || undefined;
+        attribution.utm_campaign = params.get('utm_campaign')?.slice(0, 150) || undefined;
+        attribution.utm_content = params.get('utm_content')?.slice(0, 150) || undefined;
+        attribution.utm_term = params.get('utm_term')?.slice(0, 150) || undefined;
+      }
+    } catch {
+      // Ignore attribution extraction failures
+    }
+  }
+
+  return attribution;
 }
 
 /**

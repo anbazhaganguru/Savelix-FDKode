@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import ErrorBoundary from './components/common/ErrorBoundary.jsx';
 import * as serviceWorkerRegistration from './services/serviceWorkerRegistration.js';
-import './services/attributionTracker.js';
 import './styles/index.css';
 
 const rootElement = document.getElementById('root');

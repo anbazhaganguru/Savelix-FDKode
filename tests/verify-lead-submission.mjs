@@ -13,12 +13,6 @@ import {
   generateIdempotencyKey,
   submitLeadToApi
 } from '../src/services/leadSubmission.js';
-import {
-  mapReferrerToSource,
-  initAttributionTracker,
-  getAttribution,
-  ATTRIBUTION_STORAGE_KEY
-} from '../src/services/attributionTracker.js';
 
 let passed = 0;
 let failed = 0;
@@ -316,69 +310,6 @@ console.log('\n[Suite 4: Public Ingestion API Contract, Custom Services & Error 
     resNetwork.success === false && resNetwork.errorType === 'NETWORK',
     '14. Structured error handling for Duplicate Submission (409), Rate Limit (429), Schema Validation (422), and Network Disconnection'
   );
-}
-
-// ---------------------------------------------------------------------------
-// SUITE 5: Attribution Tracking & Navigation Persistence
-// ---------------------------------------------------------------------------
-console.log('\n[Suite 5: Attribution Tracking & Navigation Persistence]');
-{
-  const mockStorage = new Map();
-  const originalWindow = globalThis.window;
-  const originalDoc = globalThis.document;
-
-  globalThis.window = {
-    location: {
-      pathname: '/',
-      search: '?utm_source=instagram&utm_medium=bio_link&utm_campaign=wellness_launch&utm_content=story1&utm_term=anxiety',
-      hostname: 'savelixclinic.com'
-    },
-    sessionStorage: {
-      getItem: (key) => mockStorage.get(key) || null,
-      setItem: (key, val) => mockStorage.set(key, String(val)),
-      removeItem: (key) => mockStorage.delete(key),
-      clear: () => mockStorage.clear()
-    }
-  };
-  globalThis.document = {
-    referrer: 'https://l.instagram.com/'
-  };
-
-  // 15: Initial landing extracts and persists UTM parameters in sessionStorage
-  initAttributionTracker();
-  const storedJson = mockStorage.get(ATTRIBUTION_STORAGE_KEY);
-  const parsedStored = JSON.parse(storedJson || '{}');
-  assert(
-    parsedStored.utm_source === 'instagram' &&
-    parsedStored.utm_medium === 'bio_link' &&
-    parsedStored.utm_campaign === 'wellness_launch' &&
-    parsedStored.utm_content === 'story1' &&
-    parsedStored.utm_term === 'anxiety',
-    '15. Extracts and persists UTM parameters in sessionStorage on initial landing'
-  );
-
-  // 16: Multi-page navigation (search query string becomes empty on /contact)
-  globalThis.window.location.pathname = '/contact';
-  globalThis.window.location.search = ''; // No UTMs in URL on subsequent page
-  const retainedAttr = getAttribution();
-  assert(
-    retainedAttr.utm_source === 'instagram' &&
-    retainedAttr.utm_medium === 'bio_link' &&
-    retainedAttr.utm_campaign === 'wellness_launch' &&
-    retainedAttr.source_page === '/contact',
-    '16. Preserves attribution across multi-page internal navigation when query params are absent'
-  );
-
-  // 17: Referrer Domain Heuristic Mapping
-  assert(mapReferrerToSource('https://youtube.com/watch?v=123') === 'youtube', '17a. Maps youtube.com to youtube');
-  assert(mapReferrerToSource('https://web.whatsapp.com/') === 'whatsapp', '17b. Maps whatsapp domain to whatsapp');
-  assert(mapReferrerToSource('https://m.facebook.com/') === 'facebook', '17c. Maps facebook domain to facebook');
-  assert(mapReferrerToSource('https://www.google.co.in/') === 'google', '17d. Maps google domain to google');
-  assert(mapReferrerToSource('https://savelixclinic.com/about') === undefined, '17e. Ignores internal self-referrals');
-
-  // Restore
-  globalThis.window = originalWindow;
-  globalThis.document = originalDoc;
 }
 
 console.log('\n========================================');
